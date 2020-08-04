@@ -51,10 +51,13 @@
 ![SoftTennisCommunity UI_Flows](https://user-images.githubusercontent.com/64352287/89249365-f6852180-d64c-11ea-9233-e40144d8ffd8.png)
 
 - ワイヤーフレーム
-<https://drive.google.com/file/d/1qok0XCtbbDZgJKWAgQXaQO7oi-yXI2Zf/view?usp=sharing>
+  - <https://drive.google.com/file/d/1qok0XCtbbDZgJKWAgQXaQO7oi-yXI2Zf/view?usp=sharing>
 
 - ER図
-<https://drive.google.com/file/d/1AwCCTNILi5-jvYzYCLD6roSB5Rm6aear/view?usp=sharing>
+  - <https://drive.google.com/file/d/1AwCCTNILi5-jvYzYCLD6roSB5Rm6aear/view?usp=sharing>
+
+- テーブル定義書
+  - https://docs.google.com/spreadsheets/d/1P_vusKzR7qw3I0kUnJvxx2G8TwFSFVHqFqpnw9Lp9UU/edit?usp=sharing
 
 
 ### 機能一覧
