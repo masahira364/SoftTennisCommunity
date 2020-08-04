@@ -47,7 +47,13 @@
   - テスト
   - デバッグ
 
+-UI Flows
+![SoftTennisCommunity UI_Flows](https://user-images.githubusercontent.com/64352287/89249365-f6852180-d64c-11ea-9233-e40144d8ffd8.png)
+
 - ワイヤーフレーム
+<https://drive.google.com/file/d/1qok0XCtbbDZgJKWAgQXaQO7oi-yXI2Zf/view?usp=sharing>
+
+
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1WRGUP5mygeT4P88yzpOoBaRdfIRSoHST6aYjoBTBINM/edit?usp=sharing>
