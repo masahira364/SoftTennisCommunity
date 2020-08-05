@@ -59,6 +59,9 @@
 - テーブル定義書
   - https://docs.google.com/spreadsheets/d/1P_vusKzR7qw3I0kUnJvxx2G8TwFSFVHqFqpnw9Lp9UU/edit?usp=sharing
 
+- アプリケーション詳細設計書
+  - <https://docs.google.com/spreadsheets/d/135cu5vYrLbH0l7NEpTFJmnRTTDpcpe11Kg0xq26yMmc/edit?usp=sharing>
+
 
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1WRGUP5mygeT4P88yzpOoBaRdfIRSoHST6aYjoBTBINM/edit?usp=sharing>
