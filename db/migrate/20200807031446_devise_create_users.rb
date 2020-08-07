@@ -35,6 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :nickname, null: false
       t.integer :sex, null: false
       t.string :profile_image_id
+      t.integer :postal_code, null: false
       t.string :address, null: false
       t.string :position
       t.string :racket

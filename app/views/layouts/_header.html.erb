@@ -1,0 +1,24 @@
+<header class="navbar navbar-fixed-top">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+           <li><%= link_to "ロゴ", root_path %></li>
+         </ul>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user signed_in? %>
+              <li><%= link_to "マイページ", "#" %></li>
+              <li><%= link_to "チーム検索", "#", class: "glyphicon glyphicon-search" %></li>
+              <li><%= link_to "所属チーム", user_registration_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "概要", "#" %></li>
+              <li><%= link_to "チーム検索", "#", class: "glyphicon glyphicon-search" %></li>
+              <li><%= link_to "新規登録", user_registration_path %></li>
+              <li><%= link_to "ログイン", user_session_path, class: "glyphicon glyphicon-log-in" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
