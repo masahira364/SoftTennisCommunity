@@ -1,0 +1,21 @@
+<h3><%= @user.nickname %> さんのページ</h3>
+
+<%= attachment_image_tag(@user, :profile_image_id, fallback:  'sports_soft_tennis_ball.png', size: '200x200') %>
+
+<p>性別：<%= @user.sex %></p>
+<% if @user.team_id.nil? %>
+	<p>所属チーム：無所属</p>
+<% else %>
+	<p>所属チーム：<%= @user.team.name %></p>
+<% end %>
+
+<p>ポジション：<%= @user.position %></p>
+<p>使用ラケット：<%= @user.racket %></p>
+<p>得意プレー：<%= @user.good_play %></p>
+<P>自己紹介</P>
+<p><%= @user.introduction %></p>
+
+<% if @user == current_user %>
+	<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary' %>
+	<%= link_to "ブックマーク一覧", "#", class: 'btn btn-primary' %>
+<% end %>

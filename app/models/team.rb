@@ -1,11 +1,12 @@
 class Team < ApplicationRecord
 
+	has_many :users
 	has_many :bookmarks
 	has_many :articles
-	belongs_to :prefecture
+	belongs_to :prefecture, optional: true
 
-	has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :delete
-	has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :delete
+	has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+	has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 	has_many :following_team, through: :follower, source: :followed
 	has_many :follower_team, through: :followed, source: :follower
 
