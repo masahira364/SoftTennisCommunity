@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require fullcalendar
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
@@ -29,4 +30,9 @@
 
  header,footer{
  	background-color: orange;
+ }
+
+ .team-image{
+ 	display: flex;
+ 	align-items: center;
  }

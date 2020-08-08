@@ -1,2 +1,72 @@
-<h1>Teams#edit</h1>
-<p>Find me in app/views/teams/edit.html.erb</p>
+
+<h1 class="text-center">チーム情報編集</h1>
+
+<%= form_with model: @team, local: true do |f| %>
+		<div class="form-group">
+		  <%= f.label :image, "チームの画像設定" %>
+		</div>
+		<div class="form-group">
+		  <%= attachment_image_tag(@team, :image, fallback: 'sports_soft_tennis_ball.png', size: '100x100') %>
+		</div>
+		<div class="form-group" >
+		  <%= f.attachment_field :image %>
+		</div>
+
+	<table class="table table-bordered table-condensed">
+		<thead>
+			<tr>
+			  <th>項目名</th>
+			  <th>入力欄</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th><%= f.label :name, "チーム名" %></th>
+				<th><%= f.text_field :name, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :slogan, "スローガン" %></th>
+				<th><%= f.text_field :slogan, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :address, "活動場所(住所）" %></th>
+				<th><%= f.text_field :address, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :practice_day, "練習日" %></th>
+				<th><%= f.text_field :practice_day, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :number_of_people, "人数" %></th>
+				<th><%= f.text_field :number_of_people, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :average_age, "平均年齢" %></th>
+				<th><%= f.text_field :average_age, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :annual_fee, "年会費" %></th>
+				<th><%= f.text_field :annual_fee, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :entry_fee, "参加費" %></th>
+				<th><%= f.text_field :entry_fee, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :members_wanted, "メンバー募集文" %></th>
+				<th><%= f.text_field :members_wanted, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :introduction, "チーム紹介文" %></th>
+				<th><%= f.text_field :introduction, class: 'form-control', style: 'height: 300px;' %></th>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="form-group">
+		<div class="text-center">
+			<%= f.submit '更新', class: "btn btn-success" %>
+		</div>
+	</div>
+
+	<% end %>

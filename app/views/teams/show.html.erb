@@ -1,2 +1,83 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h1 class="text-center"><%= @team.name %></h1>
+
+
+    <div class="form-group">
+		<%= attachment_image_tag(@team, :image, fallback: 'sports_soft_tennis_ball.png', size: '100x100') %>
+    </div>
+
+	<table class="table table-bordered table-condensed">
+		<thead>
+			<tr class="success">
+			  <th>項目名</th>
+			  <th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>チーム名</th>
+				<th><%= @team.name %></th>
+			</tr>
+			<tr>
+				<th>スローガン</th>
+				<th><%= @team.slogan %></th>
+			</tr>
+			<tr>
+				<th>活動場所(住所)</th>
+				<th><%= @team.address %></th>
+			</tr>
+			<tr>
+				<th>練習日</th>
+				<th><%= @team.practice_day %></th>
+			</tr>
+			<tr>
+				<th>人数</th>
+				<th><%= @team.number_of_people %>人</th>
+			</tr>
+			<tr>
+				<th>平均年齢</th>
+				<th><%= @team.average_age %>歳</th>
+			</tr>
+			<tr>
+				<th>年会費</th>
+				<th><%= @team.annual_fee %>円</th>
+			</tr>
+			<tr>
+				<th>参加費</th>
+				<th><%= @team.entry_fee %>円</th>
+			</tr>
+			<tr>
+				<th>メンバー募集文</th>
+				<th><%= @team.members_wanted %></th>
+			</tr>
+			<tr>
+				<th>チーム紹介文</th>
+				<th><%= @team.introduction %></th>
+			</tr>
+		</tbody>
+	</table>
+    
+    <div class="row">
+    	<div class="col-xs-3">
+			<%= link_to "チームの予定", "#", class: "btn btn-primary btn-block" %>
+		</div>
+		<div class="col-xs-3">
+			<%= link_to "活動場所地図", "#", class: "btn btn-primary btn-block" %>
+		</div>
+		<div class="col-xs-3">		
+			<%= link_to "メンバー一覧", "#", class: "btn btn-primary btn-block" %>
+		</div>
+		<div class="col-xs-3">
+			<%= link_to "チーム日記", "#", class: "btn btn-primary btn-block" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<%= link_to "メッセージ", "#", class: "btn btn-primary btn-block" %>
+		</div>
+		<div class="col-xs-3">
+			<%= link_to "編集", edit_team_path(@team), class: "btn btn-primary btn-block" %>
+		</div>
+		<div class="col-xs-3">
+			<%= link_to "交流チーム", "#", class: "btn btn-primary btn-block" %>
+		</div>
+	</div>

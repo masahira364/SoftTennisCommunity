@@ -5,6 +5,8 @@ class Team < ApplicationRecord
 	has_many :articles
 	belongs_to :prefecture, optional: true
 
+	attachment :image
+
 	has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 	has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 	has_many :following_team, through: :follower, source: :followed

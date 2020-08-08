@@ -14,5 +14,23 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require moment
+//= require fulcalendar
 //= require bootstrap-sprockets
 //= require_tree .
+
+// fullcarendar読み込み
+$(function(){
+	function eventCalendar(){
+		return $('#calendar').fullCalendar({});
+	};
+	function clearCarendar(){
+		$('#calendar').html('');
+	};
+});
+
+// fullcalendar呼び出し
+$(document).on('turbolinks:load', function(){
+	eventCalendar();
+});
+$(document).on('turbolinks:before-cache', clearCarendar);
