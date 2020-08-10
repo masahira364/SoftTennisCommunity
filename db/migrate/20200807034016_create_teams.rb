@@ -17,6 +17,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :article_id
       t.integer :prefecture_id
+      t.integer :event_id
       t.timestamps
     end
   end

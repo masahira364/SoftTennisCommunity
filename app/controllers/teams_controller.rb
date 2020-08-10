@@ -33,9 +33,10 @@ class TeamsController < ApplicationController
   	end
   end
 
-  def team_map
+  def calendar
+    @team = Team.find(params[:id])
+    @events = @team.events
   end
-
 
   private
   def team_params

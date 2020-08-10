@@ -3,6 +3,7 @@ class Team < ApplicationRecord
 	has_many :users
 	has_many :bookmarks
 	has_many :articles
+	has_many :events
 	belongs_to :prefecture, optional: true
 
 	attachment :image

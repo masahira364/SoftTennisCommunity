@@ -1,0 +1,21 @@
+<h3>予定登録</h3>
+
+<%= form_with model: @event do |f| %>
+
+	<%= f.hidden_field :team_id, :value => params[:team_id] %>
+
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+
+	<%= f.label :start_date %>
+	<%= f.date_select :start_date %>
+
+	<%= f.label :end_date %>
+	<%= f.date_select :end_date %>
+
+	<%= f.submit "登録" %>
+
+	<% end %>
