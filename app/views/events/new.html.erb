@@ -1,21 +1,47 @@
-<h3>予定登録</h3>
+<h1 class="text-center">予定登録</h1>
 
-<%= form_with model: @event do |f| %>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-4">
 
-	<%= f.hidden_field :team_id, :value => params[:team_id] %>
+	<div class="form-horizontal">
+		<%= form_with model: @event do |f| %>
+			<%= f.hidden_field :team_id, :value => params[:team_id] %>
 
-	<%= f.label :title %>
-	<%= f.text_field :title %>
+			<div class="form-group">
+				<%= f.label :title, "件名", class: "col-xs-2" %>
+				<div class="col-xs-5">
+					<%= f.text_field :title, class: "form-control" %>
+				</div>
+			</div>
 
-	<%= f.label :description %>
-	<%= f.text_field :description %>
+			<div class="form-group">
+				<%= f.label :description, "詳細", class: "col-xs-2" %>
+				<div class="col-xs-5">
+					<%= f.text_field :description, class: "form-control", style: "height: 300px;"  %>
+				</div>
+			</div>
 
-	<%= f.label :start_date %>
-	<%= f.date_select :start_date %>
+			<div class="form-group">
+				<%= f.label :start_date, "開始日時", class: "col-xs-2" %>
+				<div class="col-xs-6">
+					<%= f.datetime_select :start_date, class: "form-control"  %>
+				</div>
+			</div>
 
-	<%= f.label :end_date %>
-	<%= f.date_select :end_date %>
+			<div class="form-group">
+				<%= f.label :end_date, "終了日時", class: "col-xs-2" %>
+				<div class="col-xs-6">
+					<%= f.datetime_select :end_date, class: "form-control"  %>
+				</div>
+			</div>
 
-	<%= f.submit "登録" %>
+			<div class="form-group">
+				<div class="col-xs-offset-2 col-xs-5">
+					<%= f.submit "登録", class: "btn btn-success btn-block" %>
+				</div>
+			</div>
 
-	<% end %>
+		<% end %>
+	</div>
+  </div>
+</div>
