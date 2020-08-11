@@ -4,9 +4,20 @@ class Team < ApplicationRecord
 	has_many :bookmarks
 	has_many :articles
 	has_many :events
-	belongs_to :prefecture, optional: true
 
 	attachment :image
+
+	# 住所自動入力
+	include JpPrefecture
+	jp_prefecture :prefecture_code
+
+	def prefecture_name
+	  JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+	end
+
+	def prefecture_name=(prefecture_name)
+	  self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+	end
 
 	# geocoder
 	geocoded_by :address
@@ -30,7 +41,5 @@ class Team < ApplicationRecord
 		following_team.include?(team)
 	end
 
-	private
-	def geocode
-		uri = URI.escape("https://maps.googleapis.com/maps/api/geocode/json?address="+self.address.gsub(" ", "")+"&key=#{ENV['SECRET_KEY']}")
+	
 end

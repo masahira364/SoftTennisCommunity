@@ -39,12 +39,18 @@ class TeamsController < ApplicationController
   end
 
   def map
+    @team = Team.find(params[:id])
+  end
+
+  def team_search
   end
 
   private
   def team_params
   	params.require(:team).permit(:name,
   								 :slogan,
+                   :postcode,
+                   :prefecture_name,
   								 :address,
   								 :practice_day,
   								 :number_of_people,

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :teams do
     member do
       get '/calendar' => 'teams#calendar'
+      get '/map' => 'teams#map'
     end
   end
   resources :events
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
 
   
   get 'teams/following_team'
-  get 'teams/team_search'
+  get '/team_search' => 'teams#team_search'
   
 
   resources :articles do

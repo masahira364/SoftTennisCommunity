@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
 												  	 	   :email,
 												  	 	   :profile_image,
 												  	 	   :postal_code,
+												  	 	   :prefecture_code,
 												  	 	   :address,
 												  	 	   :position,
 												  	 	   :racket,

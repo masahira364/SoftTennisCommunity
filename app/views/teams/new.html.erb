@@ -29,6 +29,14 @@
 				<th><%= f.text_field :slogan, class: 'form-control' %></th>
 			</tr>
 			<tr>
+				<th><%= f.label :postcode, "活動場所（郵便番号）" %></th>
+				<th><%= f.text_field :postcode, class: 'form-control' %></th>
+			</tr>
+			<tr>
+				<th><%= f.label :prefecture_code, "活動場所（都道府県）" %></th>
+				<th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, include_blank: "都道府県", class: 'form-control'  %></th>
+			</tr>
+			<tr>
 				<th><%= f.label :address, "活動場所(住所）" %></th>
 				<th><%= f.text_field :address, class: 'form-control' %></th>
 			</tr>
