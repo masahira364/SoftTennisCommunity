@@ -1,3 +1,31 @@
+<!-- クリッカブルマップからのパラメーター有無で分岐 -->
+<% if params[:prefecture_code] %>
+
+<h1><%= params[:prefecture_code] %> のチーム一覧</h1>
+
+<table class="table table-bordered">
+	<thead>
+		<tr class="success">
+			<th>チーム名</th>
+			<th>活動場所</th>
+			<th>人数</th>
+			<th>メンバー募集</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @prefecture_teams.each do |team| %>
+			<tr>
+				<td><%= link_to team.name, team_path(team) %></td>
+				<td><%= team.address %></td>
+				<td><%= team.number_of_people %></td>
+				<td>〇</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<% else %>
+
 <h1>チーム一覧</h1>
 
 <table class="table table-bordered">
@@ -21,3 +49,4 @@
 	</tbody>
 </table>
 
+<% end %>

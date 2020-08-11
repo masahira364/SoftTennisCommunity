@@ -19,7 +19,10 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-
+// クリッカブルマップの領域をレスポンシブにする
+$(document).ready(function(e) {
+	$('img[usemap]').rwdImageMaps();
+});
 
 
 

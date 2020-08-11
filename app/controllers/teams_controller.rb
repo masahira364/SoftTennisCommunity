@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   def index
   	@teams = Team.all
+    @prefecture_teams = Team.where(prefecture_code: params[:prefecture_code])
   end
 
   def show
