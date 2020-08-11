@@ -1,7 +1,9 @@
 class TeamsController < ApplicationController
   def index
+    @pref = JpPrefecture::Prefecture.find(params[:prefecture_code])
   	@teams = Team.all
-    @prefecture_teams = Team.where(prefecture_code: params[:prefecture_code])
+    @prefecture = params[:prefecture_code]
+    @prefecture_teams = Team.where(prefecture_code: @prefecture)
   end
 
   def show
@@ -14,6 +16,8 @@ class TeamsController < ApplicationController
 
   def create
   	@team = Team.new(team_params)
+    @user = current_user
+    @user.team_id = @team.id
   	if @team.save
   	   redirect_to teams_path
   	else
@@ -48,7 +52,9 @@ class TeamsController < ApplicationController
 
   private
   def team_params
-  	params.require(:team).permit(:name,
+  	params.require(:team).permit(
+                   :name,
+                   :image,
   								 :slogan,
                    :postcode,
                    :prefecture_name,

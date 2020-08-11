@@ -7,6 +7,6 @@ $ ->
 		postcode : ["#team_postcode"],
 		address  : {
 						"#team_prefecture_code" : "%3",
-						"#team_address"    : "%4%5%6",
+						"#team_address"    : "%4%5%6%7",
 		}
 	})

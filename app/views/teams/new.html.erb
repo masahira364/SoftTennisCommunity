@@ -30,15 +30,15 @@
 			</tr>
 			<tr>
 				<th><%= f.label :postcode, "活動場所（郵便番号）" %></th>
-				<th><%= f.text_field :postcode, class: 'form-control' %></th>
+				<th><%= f.text_field :postcode, class: 'form-control postcode', id: 'team_postcode' %></th>
 			</tr>
 			<tr>
-				<th><%= f.label :prefecture_code, "活動場所（都道府県）" %></th>
-				<th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, include_blank: "都道府県", class: 'form-control'  %></th>
+				<th><%= f.label :prefecture_name, "活動場所（都道府県）" %></th>
+				<th><%= f.collection_select :prefecture_name, JpPrefecture::Prefecture.all, :name, :name, include_blank: "都道府県", class: 'form-control address', id: 'team_prefecture_code'  %></th>
 			</tr>
 			<tr>
 				<th><%= f.label :address, "活動場所(住所）" %></th>
-				<th><%= f.text_field :address, class: 'form-control' %></th>
+				<th><%= f.text_field :address, class: 'form-control address', id: 'team_address' %></th>
 			</tr>
 			<tr>
 				<th><%= f.label :practice_day, "練習日" %></th>

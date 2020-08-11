@@ -9,7 +9,7 @@ class Team < ApplicationRecord
 
 	# 住所自動入力
 	include JpPrefecture
-	jp_prefecture :prefecture_code
+	jp_prefecture :prefecture_code, method_name: :pref
 
 	def prefecture_name
 	  JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
