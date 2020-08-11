@@ -38,6 +38,9 @@ class TeamsController < ApplicationController
     @events = @team.events
   end
 
+  def map
+  end
+
   private
   def team_params
   	params.require(:team).permit(:name,

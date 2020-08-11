@@ -8,6 +8,11 @@ class Team < ApplicationRecord
 
 	attachment :image
 
+	# geocoder
+	geocoded_by :address
+	after_validation :geocode
+
+	# チームフォローの記述
 	has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 	has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 	has_many :following_team, through: :follower, source: :followed
@@ -24,4 +29,8 @@ class Team < ApplicationRecord
 	def following?(team)
 		following_team.include?(team)
 	end
+
+	private
+	def geocode
+		uri = URI.escape("https://maps.googleapis.com/maps/api/geocode/json?address="+self.address.gsub(" ", "")+"&key=#{ENV['SECRET_KEY']}")
 end
