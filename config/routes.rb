@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   get 'home/about'
   devise_for :users
 
-  resources :users
+  resources :users do
+    get '/bookmarks' => 'users#bookmarks', on: :member
+  end
 
-  resources :teams do
+  resources :teams, shallow: true do
+    resource :bookmarks, only: %i[create destroy]
+    get :bookmarks, on: :collection
     member do
       get '/calendar' => 'teams#calendar'
       get '/map' => 'teams#map'
@@ -13,11 +17,8 @@ Rails.application.routes.draw do
   end
   resources :events
 
-
-  
   get 'teams/following_team'
   get '/team_search' => 'teams#team_search'
-  
 
   resources :articles do
   	resources :comments, only: [:create, :destroy]

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_teams, through: :bookmarks, source: :team
   has_many :comments
   belongs_to :team, optional: true
 

@@ -9,11 +9,19 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	if @user.update(user_params)
-  	   redirect_to user_path(@user)
-  	else
-  		render :edit
-  	end
+    if @user.update(user_params)
+       if @user.update(params[:user][:team_id])
+          redirect_to team_path(params[:user][:team_id])
+       else
+  	      redirect_to user_path(@user)
+       end
+    else
+      render :edit
+    end
+  end
+
+  def bookmarks
+    @user = current_user
   end
 
 

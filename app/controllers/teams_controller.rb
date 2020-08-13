@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
 
   def show
   	@team = Team.find(params[:id])
+    @user = User.find_by(id: current_user.id)
   end
 
   def new
@@ -48,6 +49,10 @@ class TeamsController < ApplicationController
   end
 
   def team_search
+  end
+
+  def bookmarks
+    @teams = current_user.bookmark_teams
   end
 
   private

@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
 
 	has_many :users
-	has_many :bookmarks
+	has_many :bookmarks, dependent: :destroy
 	has_many :articles
 	has_many :events
 
@@ -41,5 +41,8 @@ class Team < ApplicationRecord
 		following_team.include?(team)
 	end
 
-	
+	# ブックマーク
+	def bookmark_by?(user)
+		bookmarks.where(user_id: user.id).exists?
+	end
 end

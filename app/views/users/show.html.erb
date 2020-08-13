@@ -38,6 +38,9 @@
 <div class="text-center">
 	<% if @user == current_user %>
 		<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary' %>
-		<%= link_to "ブックマーク一覧", "#", class: 'btn btn-primary' %>
+		<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary' %>
+		<% if @user.team.present? %>
+		<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary' %>
+		<% end %>
 	<% end %>
 </div>

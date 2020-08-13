@@ -22,10 +22,13 @@ ActiveRecord::Schema.define(version: 2020_08_11_072151) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "team_id"
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_bookmarks_on_team_id"
+    t.index ["user_id", "team_id"], name: "index_bookmarks_on_user_id_and_team_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|

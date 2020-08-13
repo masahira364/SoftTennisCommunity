@@ -10,7 +10,7 @@
             <% if user_signed_in? %>
               <li><%= link_to "マイページ", user_path(current_user) %></li>
               <li><%= link_to "チーム検索", team_search_path, class: "glyphicon glyphicon-search" %></li>
-              <li><%= link_to "所属チーム", user_registration_path %></li>
+              <li><%= link_to "チーム日記一覧", articles_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "概要", "#" %></li>
