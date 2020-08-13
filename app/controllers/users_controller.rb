@@ -10,13 +10,9 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
     if @user.update(user_params)
-       if @user.update(params[:user][:team_id])
-          redirect_to team_path(params[:user][:team_id])
-       else
-  	      redirect_to user_path(@user)
-       end
+       redirect_to user_path(@user)
     else
-      render :edit
+       render :edit
     end
   end
 
@@ -37,6 +33,7 @@ class UsersController < ApplicationController
   	 	:position,
   	 	:racket,
   	 	:good_play,
-  	 	:introduction)
+  	 	:introduction,
+      :team_id)
   end
 end

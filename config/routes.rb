@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     member do
       get '/calendar' => 'teams#calendar'
       get '/map' => 'teams#map'
+      get '/member' => 'teams#member'
     end
   end
   resources :events

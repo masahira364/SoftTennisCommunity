@@ -1,4 +1,7 @@
 class TeamsController < ApplicationController
+
+  before_action :set_team, only: [:show, :edit, :update, :calendar, :map, :member]
+
   def index
     @pref = JpPrefecture::Prefecture.find(params[:prefecture_code])
   	@teams = Team.all
@@ -7,8 +10,9 @@ class TeamsController < ApplicationController
   end
 
   def show
-  	@team = Team.find(params[:id])
     @user = User.find_by(id: current_user.id)
+    @man = @team.users.where(sex: "男性").count
+    @woman = @team.users.where(sex: "女性").count
   end
 
   def new
@@ -27,11 +31,9 @@ class TeamsController < ApplicationController
   end
 
   def edit
-  	@team = Team.find(params[:id])
   end
 
   def update
-  	@team = Team.find(params[:id])
   	if @team.update(team_params)
   	   redirect_to team_path(@team)
   	else
@@ -40,22 +42,23 @@ class TeamsController < ApplicationController
   end
 
   def calendar
-    @team = Team.find(params[:id])
     @events = @team.events
   end
 
   def map
-    @team = Team.find(params[:id])
   end
 
   def team_search
   end
 
-  def bookmarks
-    @teams = current_user.bookmark_teams
+  def member
   end
 
   private
+  def set_team
+    @team = Team.find(params[:id])
+  end
+
   def team_params
   	params.require(:team).permit(
                    :name,

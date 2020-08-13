@@ -1,9 +1,9 @@
-<h1 class="text-center"><%= @team.name %></h1>
-
-
-    <div class="form-group">
-		<%= attachment_image_tag(@team, :image, fallback: 'sports_soft_tennis_ball.png', size: '100x100') %>
-    </div>
+<div class="text-center">
+  <h1><%= @team.name %></h1>
+  <div class="form-group">
+	<%= attachment_image_tag(@team, :image, fallback: 'sports_soft_tennis_ball.png', size: '100x100') %>
+   </div>
+</div>
 
 	<table class="table table-bordered table-condensed">
 		<thead>
@@ -22,6 +22,10 @@
 				<th><%= @team.slogan %></th>
 			</tr>
 			<tr>
+				<th>都道府県</th>
+				<th><%= @team.prefecture_name %></th>
+			</tr>
+			<tr>
 				<th>活動場所(住所)</th>
 				<th><%= @team.address %></th>
 			</tr>
@@ -31,7 +35,7 @@
 			</tr>
 			<tr>
 				<th>人数</th>
-				<th><%= @team.number_of_people %>人</th>
+				<th>男性:<%= @man %>人, 女性:<%= @woman %>人</th>
 			</tr>
 			<tr>
 				<th>平均年齢</th>
@@ -64,7 +68,7 @@
 			<%= link_to "活動場所地図", map_team_path(@team), class: "btn btn-primary btn-block" %>
 		</div>
 		<div class="col-xs-3">
-			<%= link_to "メンバー一覧", "#", class: "btn btn-primary btn-block" %>
+			<%= link_to "メンバー一覧", member_team_path(@team), class: "btn btn-primary btn-block" %>
 		</div>
 		<div class="col-xs-3">
 			<%= link_to "チーム日記", articles_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
@@ -94,9 +98,9 @@
 
 		<div class="col-xs-3">
 			<!-- チーム参加の分岐 -->
-			<% if @user.team == @team.id %>
+			<% if @user.team_id == @team.id %>
 				<%= link_to "チームに参加済", "#", class: "btn btn-primary btn-block" %>
-			<% elsif @user.team = nil %>
+			<% elsif @user.team_id == nil %>
 				<%= form_with model: @user, url: user_path(@user) do |f| %>
 					<%= f.hidden_field :team_id, :value => @team.id %>
 					<%= f.submit "チームに参加する", class: "btn btn-primary btn-block" %>
