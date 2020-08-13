@@ -1,0 +1,28 @@
+<div class="text-center">
+	<h1><%= @team.name %> の交流チーム</h1>
+	<p>※お互いにフォローしているチームが表示されます。</p>
+</div>
+
+<table class="table">
+	<thead>
+		<tr class="success">
+			<th class="col-xs-2"></th>
+			<th>都道府県</th>
+			<th>活動場所</th>
+			<th>人数</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @teams.each do |team| %>
+			<tr>
+				<td><%= attachment_image_tag(team, :image, fallback: 'sports_soft_tennis_ball.png', size: '50x50') %>
+					<%= link_to team.name, team_path(team) %></td>
+				<td><%= team.prefecture_name %></td>
+				<td><%= team.address %></td>
+				<td><%= team.users.count %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to "Back", team_path(@team) %>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :teams, shallow: true do
     resource :bookmarks, only: %i[create destroy]
+    resource :relationships, only: [:create, :destroy]
+    get '/matching' => 'relationships#matching'
     get :bookmarks, on: :collection
     member do
       get '/calendar' => 'teams#calendar'
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :events
 
-  get 'teams/following_team'
+  
   get '/team_search' => 'teams#team_search'
 
   resources :articles do

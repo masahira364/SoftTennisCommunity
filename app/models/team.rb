@@ -41,6 +41,11 @@ class Team < ApplicationRecord
 		following_team.include?(team)
 	end
 
+	def matchers
+		Team.where(id: follower.select(:followed_id))
+		.where(id: followed.select(:follower_id))
+	end
+
 	# ブックマーク
 	def bookmark_by?(user)
 		bookmarks.where(user_id: user.id).exists?

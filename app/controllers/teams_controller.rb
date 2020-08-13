@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
 
-  before_action :set_team, only: [:show, :edit, :update, :calendar, :map, :member]
+  before_action :set_team, only: [:show, :edit, :update, :calendar, :map, :member, :matching]
 
   def index
     @pref = JpPrefecture::Prefecture.find(params[:prefecture_code])
@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
 
   def show
     @user = User.find_by(id: current_user.id)
+    @current_team = Team.find(@user.team_id)
     @man = @team.users.where(sex: "男性").count
     @woman = @team.users.where(sex: "女性").count
   end

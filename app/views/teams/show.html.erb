@@ -93,7 +93,7 @@
 		</div>
 
 		<div class="col-xs-3">
-			<%= link_to "交流チーム", "#", class: "btn btn-primary btn-block" %>
+			<%= link_to "交流チーム", team_matching_path(@team), class: "btn btn-primary btn-block" %>
 		</div>
 
 		<div class="col-xs-3">
@@ -110,3 +110,12 @@
 			<% end %>
 		</div>
 	</div>
+
+	<!-- フォローボタン -->
+	<% unless current_user.team = @team %>
+		<% if @current_team.following?(@team) %>
+	 		<%= link_to "フォロー解除", team_relationships_path(@team.id), method: :delete, class: "btn btn-primary" %>
+	 	<% else %>
+	 		<%= link_to "フォローする", team_relationships_path(@team.id), method: :post, class: "btn btn-primary" %>
+	 	<% end %>
+	<% end %>
