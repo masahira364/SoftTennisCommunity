@@ -17,9 +17,38 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
  body{
- 	margin: 70px;
+ 	margin-top: 50px;
+ 	margin-bottom: 60px;
  }
+
+ .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+ }
+
+ .text-muted {
+  margin: 20px 0;
+}
 
  .top-image{
  	width: 100%;
@@ -35,9 +64,4 @@
  .team-image{
  	display: flex;
  	align-items: center;
- }
-
- .area{
- 	display: none;
- 	cursor: pointer;
  }
