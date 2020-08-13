@@ -1,46 +1,54 @@
-<div class="text-center">
-	<h3><%= @user.nickname %> さんのページ</h3>
+<div class="row">
+	<div class="text-center">
+		<h3><%= @user.nickname %> さんのページ</h3>
 
-	<%= attachment_image_tag(@user, :profile_image_id, fallback:  'sports_soft_tennis_ball.png', size: '200x200') %>
+		<%= attachment_image_tag(@user, :profile_image, fallback:  'sports_soft_tennis_ball.png', size: '300x300', class: "img-circle") %>
+	</div>
 </div>
 
-	<table class="table table-bordered table-condensed">
-		<tr>
-		  <td class="info">性別</td>
-		  <td><%= @user.sex %></td>
-		</tr>
-		<tr>
-			<td class="info">所属チーム</td>
-			<% if @user.team_id.nil? %>
-				<td>無所属</td>
-			<% else %>
-				<td><%= @user.team.name %></td>
-			<% end %>
-		</tr>
-		<tr>
-			<td class="info">ポジション</td>
-			<td><%= @user.position %></td>
-		</tr>
-		<tr>
-			<td class="info">使用ラケット</td>
-			<td><%= @user.racket %></td>
-		</tr>
-		<tr>
-			<td class="info">得意プレー</td>
-			<td><%= @user.good_play %></td>
-		</tr>
-		<tr>
-			<td class="info">自己紹介</td>
-			<td><%= @user.introduction %></td>
-		</tr>
-	</table>
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
+		<table class="table table-bordered table-condensed">
+			<tr>
+			  <td class="info">性別</td>
+			  <td><%= @user.sex %></td>
+			</tr>
+			<tr>
+				<td class="info">所属チーム</td>
+				<% if @user.team_id.nil? %>
+					<td>無所属</td>
+				<% else %>
+					<td><%= @user.team.name %></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td class="info">ポジション</td>
+				<td><%= @user.position %></td>
+			</tr>
+			<tr>
+				<td class="info">使用ラケット</td>
+				<td><%= @user.racket %></td>
+			</tr>
+			<tr>
+				<td class="info">得意プレー</td>
+				<td><%= @user.good_play %></td>
+			</tr>
+			<tr>
+				<td class="info">自己紹介</td>
+				<td><%= @user.introduction %></td>
+			</tr>
+		</table>
+	</div>
+</div>
 
-<div class="text-center">
-	<% if @user == current_user %>
-		<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary' %>
-		<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary' %>
-		<% if @user.team.present? %>
-		<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary' %>
+<div class="row">
+	<div class="text-center">
+		<% if @user == current_user %>
+			<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary' %>
+			<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary' %>
+			<% if @user.team.present? %>
+			<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary' %>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 </div>

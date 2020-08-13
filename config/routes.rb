@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :events
 
-  
+  get '/search' => 'teams#search'
   get '/team_search' => 'teams#team_search'
 
   resources :articles do

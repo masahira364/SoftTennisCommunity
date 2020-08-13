@@ -1,7 +1,9 @@
 <!-- クリッカブルマップからのパラメーター有無で分岐 -->
 <% if params[:prefecture_code] %>
 
-<h1><%= @pref.name %> のチーム一覧</h1>
+<h1 class="text-center"><%= @prefecture.name %> のチーム一覧</h1>
+
+<%= render "search_form" %>
 
 <table class="table table-bordered">
 	<thead>
@@ -26,7 +28,9 @@
 
 <% else %>
 
-<h1>チーム一覧</h1>
+<h1 class="text-center">チーム一覧</h1>
+
+<%= render "search_form" %>
 
 <table class="table table-bordered">
 	<thead>
