@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
+		@comment = Comment.new
 	end
 
 	def new
@@ -29,8 +30,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def update
-		@article = Article.find(article_params)
-		if @article.update
+		@article = Article.find(params[:id])
+		if @article.update(article_params)
 		   redirect_to article_path(@article)
 		else
 			render :edit
