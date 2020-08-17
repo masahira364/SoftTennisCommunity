@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_032410) do
     t.string "position"
     t.string "racket"
     t.string "good_play"
-    t.text "introduction", default: "よろしくお願いします"
+    t.text "introduction"
     t.integer "team_id"
     t.integer "bookmark_id"
     t.datetime "created_at", null: false

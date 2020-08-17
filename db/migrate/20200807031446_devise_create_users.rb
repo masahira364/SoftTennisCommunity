@@ -41,7 +41,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :position
       t.string :racket
       t.string :good_play
-      t.text :introduction, default: "よろしくお願いします"
+      t.text :introduction
       t.integer :team_id
       t.integer :bookmark_id
 

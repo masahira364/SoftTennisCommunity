@@ -7,13 +7,9 @@
 	</div>
 
 	<!-- フォローボタン -->
-	<% unless current_user.team_id == @team.id || nil %>
-		<% if @current_team.following?(@team) %>
-	 		<%= link_to "フォロー解除", team_relationships_path(@team.id), method: :delete, class: "btn btn-primary" %>
-	 	<% else %>
-	 		<%= link_to "フォローする", team_relationships_path(@team.id), method: :post, class: "btn btn-primary" %>
-	 	<% end %>
-	<% end %>
+	<div id="follow_<%= @team.id %>">
+		<%= render 'follow', team: @team %>
+	</div>
 
 	<table class="table table-bordered table-condensed">
 		<thead>
@@ -90,11 +86,9 @@
 				<%= link_to "編集", edit_team_path(@team), class: "btn btn-primary btn-block" %>
 			<% else %>
 				<!-- ブックマークボタン -->
-				<% if @team.bookmark_by?(current_user) %>
-					<%= link_to "ブックマークを外す", team_bookmarks_path(@team.id), method: :delete, class: "btn btn-primary btn-block" %>
-				<% else %>
-					<%= link_to "ブックマークする", team_bookmarks_path(@team.id), method: :post, class: "btn btn-primary btn-block" %>
-				<% end %>
+				<div id="bookmark_<%= @team.id %>">
+					<%= render 'bookmark', team: @team %>
+				</div>
 			<% end %>
 		</div>
 

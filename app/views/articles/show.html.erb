@@ -17,6 +17,13 @@
 				<%= attachment_image_tag(@article, :image, fallback: 'sports_soft_tennis_ball.png', size: '300x300') %>
 			</div>
 
+			<!-- いいねボタン -->
+			<div class="favorite_<%= @article.id %>">
+				<%= render 'favorite', article: @article %>
+			</div>
+
+			<%= link_to "一覧に戻る", articles_path(team_id: @article.team_id), class: "btn btn-primary" %>
+
 			<% if @article.team_id == current_user.team_id %>
 				<div class="row">
 					<div class=" button_group text-center">

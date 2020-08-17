@@ -1,0 +1,7 @@
+<% unless current_user.team_id == @team.id || nil %>
+	<% if @current_team.following?(team) %>
+	 	<%= link_to "フォロー解除", team_relationships_path(team.id), method: :delete, class: "btn btn-primary" %>
+	<% else %>
+	 	<%= link_to "フォローする", team_relationships_path(team.id), method: :post, class: "btn btn-primary" %>
+	<% end %>
+<% end %>

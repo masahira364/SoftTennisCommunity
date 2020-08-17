@@ -19,12 +19,15 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :events
+  resources :events do
+    resources :entries, only: [:create, :destroy]
+  end
 
   get '/search' => 'teams#search'
   get '/team_search' => 'teams#team_search'
 
   resources :articles do
+    resources :favorites, only: [:create, :destroy]
   	resources :comments, only: [:create, :destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

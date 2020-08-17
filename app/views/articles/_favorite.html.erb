@@ -1,0 +1,6 @@
+<% if article.favorite_by?(current_user) %>
+	<%= link_to "いいねを外す", article_favorite_path(article.id), method: :delete, remote: true, class: "btn btn-primary" %>
+<% else %>
+	<%= link_to "いいね", article_favorites_path(article.id), method: :post, remote: true, class: "btn btn-primary" %>
+<% end %>
+	<%= @article.favorites.count %>
