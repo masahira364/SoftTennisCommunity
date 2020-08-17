@@ -1,3 +1,5 @@
+<div class="container">
+
 <!-- クリッカブルマップからのパラメーター有無で分岐 -->
 <% if params[:prefecture_code] %>
 
@@ -5,7 +7,9 @@
 
 <%= render "search_form" %>
 
-<%= link_to "新規チーム作成", new_team_path, class: "btn btn-primary" %>
+<div class="button-group text-right">
+	<%= link_to "新規チーム作成", new_team_path, class: "btn btn-primary" %>
+</div>
 
 <table class="table table-bordered">
 	<thead>
@@ -13,6 +17,7 @@
 			<th>チーム名</th>
 			<th>活動場所</th>
 			<th>人数</th>
+			<th>交流チーム数</th>
 			<th>メンバー募集</th>
 		</tr>
 	</thead>
@@ -21,7 +26,8 @@
 			<tr>
 				<td><%= link_to team.name, team_path(team) %></td>
 				<td><%= team.prefecture_name %><%= team.address %></td>
-				<td><%= team.number_of_people %></td>
+				<td><%= team.users.conut %>人</td>
+				<td><%= team.matchers.count %></td>
 				<td>〇</td>
 			</tr>
 		<% end %>
@@ -34,7 +40,9 @@
 
 <%= render "search_form" %>
 
-<%= link_to "新規チーム作成", new_team_path, class: "btn btn-primary" %>
+<div class="button-group text-right">
+	<%= link_to "新規チーム作成", new_team_path, class: "btn btn-primary" %>
+</div>
 
 <table class="table table-bordered">
 	<thead>
@@ -42,6 +50,7 @@
 			<th>チーム名</th>
 			<th>活動場所</th>
 			<th>人数</th>
+			<th>交流チーム数</th>
 			<th>メンバー募集</th>
 		</tr>
 	</thead>
@@ -50,11 +59,14 @@
 			<tr>
 				<td><%= link_to team.name, team_path(team) %></td>
 				<td><%= team.prefecture_name %><%= team.address %></td>
-				<td><%= team.number_of_people %></td>
-				<td>〇</td>
+				<td><%= team.users.count %>人</td>
+				<td><%= team.matchers.count %></td>
+				<td><%= team.members_wanted ? "〇" : "×" %></td>
 			</tr>
 		<% end %>
 	</tbody>
 </table>
 
 <% end %>
+
+</div>

@@ -22,11 +22,14 @@
 			<%= form_with model: @user, local: true do |f| %>
 
 				<div class="form-group">
-				      <%= f.label :profile_image_id, "プロフィール画像", class: "col-xs-3" %>
-				      <div class="col-xs-3">
-				        <%= f.attachment_field :profile_image %>
-				      </div>
+					<%= f.label :profile_image_id, "プロフィール画像", class: "col-xs-3" %>
+					<div class="col-xs-3">
+						<div class="image">
+					      	<%= attachment_image_tag(@user, :profile_image, fallback:  'sports_soft_tennis_ball.png', size: '100x100', class: "img-circle") %>
+					      	<%= f.attachment_field :profile_image %>
+				       </div>
 				    </div>
+				</div>
 
 				<div class="form-group">
 				      <label class="col-xs-3">性別</label>

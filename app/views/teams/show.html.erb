@@ -1,9 +1,19 @@
-<div class="text-center">
-  <h1><%= @team.name %></h1>
-  <div class="form-group">
-	<%= attachment_image_tag(@team, :image, fallback: 'sports_soft_tennis_ball.png', size: '100x100') %>
-   </div>
-</div>
+<div class="container">
+	<div class="text-center">
+	  <h1><%= @team.name %></h1>
+	  <div class="form-group">
+		<%= attachment_image_tag(@team, :image, fallback: 'sports_soft_tennis_ball.png', size: '100x100') %>
+	   </div>
+	</div>
+
+	<!-- フォローボタン -->
+	<% unless current_user.team_id == @team.id || nil %>
+		<% if @current_team.following?(@team) %>
+	 		<%= link_to "フォロー解除", team_relationships_path(@team.id), method: :delete, class: "btn btn-primary" %>
+	 	<% else %>
+	 		<%= link_to "フォローする", team_relationships_path(@team.id), method: :post, class: "btn btn-primary" %>
+	 	<% end %>
+	<% end %>
 
 	<table class="table table-bordered table-condensed">
 		<thead>
@@ -22,12 +32,8 @@
 				<th><%= @team.slogan %></th>
 			</tr>
 			<tr>
-				<th>都道府県</th>
-				<th><%= @team.prefecture_name %></th>
-			</tr>
-			<tr>
 				<th>活動場所(住所)</th>
-				<th><%= @team.address %></th>
+				<th><%= @team.prefecture_name %><%= @team.address %></th>
 			</tr>
 			<tr>
 				<th>練習日</th>
@@ -39,7 +45,7 @@
 			</tr>
 			<tr>
 				<th>平均年齢</th>
-				<th><%= @team.average_age %>歳</th>
+				<th><%= @team.users.average(:age).floor %>歳</th>
 			</tr>
 			<tr>
 				<th>年会費</th>
@@ -51,7 +57,7 @@
 			</tr>
 			<tr>
 				<th>メンバー募集文</th>
-				<th><%= @team.members_wanted %></th>
+				<th><%= @team.recruitment_targrt %></th>
 			</tr>
 			<tr>
 				<th>チーム紹介文</th>
@@ -60,9 +66,9 @@
 		</tbody>
 	</table>
 
-    <div class="row">
+    <div class="row button-group">
     	<div class="col-xs-3">
-			<%= link_to "チームの予定", calendar_team_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
+			<%= link_to "チームの予定", events_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
 		</div>
 		<div class="col-xs-3">
 			<%= link_to "活動場所地図", map_team_path(@team), class: "btn btn-primary btn-block" %>
@@ -74,13 +80,13 @@
 			<%= link_to "チーム日記", articles_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row button-group">
 		<div class="col-xs-3">
 			<%= link_to "メッセージ", "#", class: "btn btn-primary btn-block" %>
 		</div>
 
 		<div class="col-xs-3">
-			<% if current_user.team_id = @team_id %>
+			<% if current_user.team_id == @team.id %>
 				<%= link_to "編集", edit_team_path(@team), class: "btn btn-primary btn-block" %>
 			<% else %>
 				<!-- ブックマークボタン -->
@@ -111,11 +117,4 @@
 		</div>
 	</div>
 
-	<!-- フォローボタン -->
-	<% unless current_user.team = @team %>
-		<% if @current_team.following?(@team) %>
-	 		<%= link_to "フォロー解除", team_relationships_path(@team.id), method: :delete, class: "btn btn-primary" %>
-	 	<% else %>
-	 		<%= link_to "フォローする", team_relationships_path(@team.id), method: :post, class: "btn btn-primary" %>
-	 	<% end %>
-	<% end %>
+</div>

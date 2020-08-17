@@ -6,7 +6,11 @@ class User < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_teams, through: :bookmarks, source: :team
-  has_many :comments
+  has_many :entries
+  has_many :entry_events, through: :entries, source: :event
+  has_many :favorites
+  has_many :favorite_articles, through: :favorite, source: :article
+  has_many :comments, dependent: :destroy
   belongs_to :team, optional: true
 
   attachment :profile_image

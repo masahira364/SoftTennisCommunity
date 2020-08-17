@@ -1,8 +1,10 @@
 <header class="navbar navbar-fixed-top">
-      <div class="container">
         <nav>
-          <ul class="nav navbar-nav navbar-left">
-           <li><%= link_to "ロゴ", root_path %></li>
+          <ul class="nav navbar-nav navbar-left text-left">
+           <li><%= link_to root_path do %>
+               <%= image_tag "/assets/text_logo.png", size: '300x50' %>
+               <% end %>
+           </li>
          </ul>
         </nav>
         <nav>
@@ -20,5 +22,4 @@
             <% end %>
           </ul>
         </nav>
-      </div>
     </header>

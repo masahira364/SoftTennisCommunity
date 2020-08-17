@@ -34,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :nickname, null: false
       t.integer :sex, null: false
+      t.integer :age, null: false
       t.string :profile_image_id
       t.integer :postal_code, null: false
       t.string :address, null: false
@@ -43,7 +44,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.text :introduction, default: "よろしくお願いします"
       t.integer :team_id
       t.integer :bookmark_id
-      t.integer :comment_id
 
       t.timestamps null: false
     end

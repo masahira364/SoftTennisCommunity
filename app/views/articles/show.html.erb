@@ -1,50 +1,86 @@
-<div class="text-center">
-	<h1><%= @article.title %></h1>
-	<p><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
-
-	<div class="row">
-		<div class="article_body">
-			<%= @article.body %>
-		</div>
-	</div>
-
-	<% if @article.team_id == current_user.team_id %>
+<div class="container">
+	<div class="text-center">
+		<h1><%= @article.title %></h1>
 		<div class="row">
-			<div class="text-center">
-				<%= link_to "投稿編集", edit_article_path(@article), class: "btn btn-success" %>
-				<%= link_to "投稿削除", article_path(@article), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"} %>
+			<div class="col-xs-3 col-xs-offset-3">
+				<p>投稿日：<%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+			</div>
+			<div class="col-xs-3">
+				<p>投稿チーム：<%= link_to @article.team.name, team_path(@article.team) %></p>
 			</div>
 		</div>
-	<% end %>
 
-	<table class="table">
-		<% @article.comments.each do |comment| %>
-			<tr>
-				<td>
-					<%= attachment_image_tag(@user, :profile_image, fallback:  'sports_soft_tennis_ball.png', size: '50x50') %>
-					<%= comment.user.nickname %>
-				</td>
-				<td><%= comment.comment %></td>
-				<td><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-				<% if current_user.id == comment.user_id %>
-					<td>
-						<%= link_to "コメント削除", article_comment_path(comment.article, comment), method: :delete, class: "btn btn-danger" %>
-					</td>
+		<div class="article_body">
+			<%= @article.body %>
+
+			<div class="article_image">
+				<%= attachment_image_tag(@article, :image, fallback: 'sports_soft_tennis_ball.png', size: '300x300') %>
+			</div>
+
+			<% if @article.team_id == current_user.team_id %>
+				<div class="row">
+					<div class=" button_group text-center">
+						<%= link_to "投稿編集", edit_article_path(@article), class: "btn btn-success" %>
+						<%= link_to "投稿削除", article_path(@article), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"} %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+
+		<h3 class="text-center">コメント一覧</h3>
+		<% if @article.comments.blank? %>
+			<h3 class="text-center">まだコメントがありません。</h3>
+		<% else %>
+			<table class="table">
+				<thead>
+					<tr class="info">
+						<th>投稿者</th>
+						<th>コメント</th>
+						<th>コメント投稿日</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<% @article.comments.each do |comment| %>
+					<tr>
+						<td>
+							<%= attachment_image_tag(comment.user, :profile_image, fallback:  'sports_soft_tennis_ball.png', size: '50x50') %>
+							<%= comment.user.nickname %>
+						</td>
+						<td><%= comment.comment %></td>
+						<td><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+						<% if current_user.id == comment.user_id %>
+							<td>
+								<%= link_to "コメント削除", article_comment_path(comment.article, comment), method: :delete, class: "btn btn-danger" %>
+							</td>
+						<% end %>
+					</tr>
 				<% end %>
-			</tr>
+			</tbody>
+			</table>
 		<% end %>
-	</table>
 
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-4">
+			<div class="text-center">
+			<%= form_with model: [@article, @comment] do |f| %>
 
-	<%= form_with model: [@article, @comment] do |f| %>
-		<div class="form-group">
-			<%= f.text_area :comment %>
+				<div class="form-group">
+						<%= f.label :comment, "コメント入力" %>
+						<%= f.text_area :comment, class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= f.submit "コメント投稿", class: "btn btn-success" %>
+				</div>
+			<% end %>
 		</div>
-		<div class="form-group">
-			<%= f.submit "コメント投稿", class: "btn btn-success" %>
 		</div>
-	<% end %>
-
+	</div>
+</div>
 </div>
 
+	
 
+</div>

@@ -1,9 +1,11 @@
-<div class="text-center">
-  <h1><%= @team.name %> 活動場所</h1>
-  <h3>住所：<%= @team.address %></h3>
-</div>
+<div class="container">
+  <div class="text-center">
+    <h1><%= @team.name %> 活動場所</h1>
+    <h3>住所：<%= @team.prefecture_name %><%= @team.address %></h3>
+  </div>
 
-<div id='map' class="<%= @team.address %>"></div>
+  <div id='map' class="<%= @team.prefecture_name %><%= @team.address %>"></div>
+</div>
 
 <style>
 #map{

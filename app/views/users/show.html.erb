@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row">
 	<div class="text-center">
 		<h3><%= @user.nickname %> さんのページ</h3>
@@ -41,14 +42,23 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="text-center">
-		<% if @user == current_user %>
-			<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary' %>
-			<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary' %>
-			<% if @user.team.present? %>
-			<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary' %>
+<div class="row button-group">
+		<div class="text-center">
+			<% if @user == current_user %>
+				<div class="col-xs-4">
+					<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary btn-block' %>
+				</div>
+				<div class="col-xs-4">
+					<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary btn-block' %>
+				</div>
+				<div class="col-xs-4">
+					<% if @user.team.present? %>
+						<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary btn-block' %>
+					<% else %>
+						<%= link_to "チームを探す", team_search_path, class: 'btn btn-primary btn-block' %>
+					<% end %>
+				</div>
 			<% end %>
-		<% end %>
-	</div>
+		</div>
+</div>
 </div>

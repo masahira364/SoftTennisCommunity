@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require moment
 //= require fullcalendar
+//= require fullcalendar/lang/ja
 //= require bootstrap-sprockets
 //= require_tree .
 
@@ -24,6 +25,38 @@ $(document).ready(function(e) {
 	$('img[usemap]').rwdImageMaps();
 });
 
+// プロフィール画像プレビュー機能
+$(function(){
+    $('#user_profile_image').on('change', function (e) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });
+
+// 投稿画像プレビュー機能
+$(function(){
+    $('#article_image').on('change', function (e) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });
+
+// チーム画像プレビュー機能
+$(function(){
+    $('#team_image').on('change', function (e) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(".image").attr('src', e.target.result);
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    });
+  });
 
 
 

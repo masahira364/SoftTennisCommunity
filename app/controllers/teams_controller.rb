@@ -1,13 +1,13 @@
 class TeamsController < ApplicationController
 
-  before_action :set_team, only: [:show, :edit, :update, :calendar, :map, :member, :matching]
+  before_action :set_team, only: [:show, :edit, :update, :map, :calendar, :member, :matching]
 
   def index
     @q = Team.ransack(params[:q])
   	@teams = @q.result(distinct: true)
     @pref = params[:prefecture_code]
-    @prefecture = JpPrefecture::Prefecture.find(params[:prefecture_code])
-    @prefecture_teams = Team.where(prefecture_code: @prefecture)
+    @prefecture = JpPrefecture::Prefecture.find(@pref)
+    @prefecture_teams = Team.where(prefecture_code: @pref)
     
   end
 
@@ -82,13 +82,12 @@ class TeamsController < ApplicationController
                    :prefecture_name,
   								 :address,
   								 :practice_day,
-  								 :number_of_people,
-  								 :average_age,
   								 :annual_fee,
   								 :entry_fee,
   								 :members_wanted,
+                   :recruitment_targrt,
   								 :introduction,
-  								 :homepage,
-  								 :contact_infometion)
+  								 :homepage_url,
+  								 :email)
   end
 end

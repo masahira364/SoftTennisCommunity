@@ -1,0 +1,49 @@
+<div class="container">
+    <h1 class="text-center">チームの予定</h1>
+        
+            <div class="button-group">
+                <% if @team.id == current_user.team_id %>
+                    <%= link_to "予定登録", new_event_path(team_id: @team.id), class: "btn btn-primary" %>
+                <% end %>
+                <%= link_to "チームに戻る", team_path(@team), class: "btn btn-primary" %>
+            </div>
+       
+
+    <div id="calendar"></div>
+
+
+</div>
+
+<script>
+
+// fullcalendar呼び出し
+$(document).ready(function() {
+$('#calendar').fullCalendar({
+    events: '/events?team_id=<%= @team.id %>/.json',
+    timeFormat: 'H:mm',
+    eventColor: '#63ceef',
+    lang: 'ja',
+    navLinks: true,
+    selectable: true,
+    selectHelper: true,
+    header: {
+        left: "month agendaWeek agendaDay ",
+        center: "title"
+    },
+    dayClick: function(date, jsEvent, view) {
+
+        var title = prompt('予定を入力してください:');
+
+        $('#calendar').fullCalendar('addEventSource', [{
+        id:date,
+        title: title,
+        start: date,
+        all_day: all_day
+    }]);
+    },
+
+  });
+
+});
+
+</script>

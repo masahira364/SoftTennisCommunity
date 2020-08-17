@@ -1,7 +1,8 @@
 class Article < ApplicationRecord
 
 	belongs_to :team
-	has_many :comments
+	has_many :favorites
+	has_many :comments, dependent: :destroy
 
 	attachment :image
 end

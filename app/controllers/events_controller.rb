@@ -1,27 +1,47 @@
 class EventsController < ApplicationController
 
+	def index
+		@team = Team.find_by(id: params[:team_id])
+    	@events = Event.where(team_id: params[:team_id])
+  	end
+
 	def show
 		@event = Event.find(params[:id])
 	end
 
 	def new
+		@team = Team.find_by(id: params[:team_id])
 		@event = Event.new
 	end
 
 	def create
+		@team = Team.find_by(id: params[:team_id])
 		@event = Event.new(event_params)
-		if @event.save
-		   redirect_to calendar_team_path(@event.team_id)
-		else
-			render :new
-		end
+	    if @event.save
+	       redirect_to events_path(team_id: params[:event][:team_id])
+	    else
+	       render :new
+	    end
+	end
+
+	def edit
+		@event = Event.find(params[:id])
+	end
+
+	def update
+		@event = Event.find(params[:id])
+    	if @event.update(event_params)
+    	   redirect_to events_path(team_id: @event.team_id)
+    	else
+    		render :edit
+    	end
 	end
 
 	def destroy
 		@team = Team.find_by(id: params[:team_id])
 		@event = Event.find(params[:id])
 		if @event.destroy
-		   redirect_to calendar_team_path(@event.team_id)
+		   redirect_to events_path(team_id: @event.team_id)
 		end
 	end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_072151) do
+ActiveRecord::Schema.define(version: 2020_08_17_032410) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2020_08_11_072151) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -48,6 +55,13 @@ ActiveRecord::Schema.define(version: 2020_08_11_072151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_events_on_team_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prefectures", force: :cascade do |t|
@@ -66,22 +80,17 @@ ActiveRecord::Schema.define(version: 2020_08_11_072151) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
+    t.string "email"
     t.string "slogan", null: false
     t.string "address", null: false
-    t.string "practice_day", null: false
-    t.integer "number_of_people", null: false
-    t.integer "average_age", null: false
-    t.integer "annual_fee", null: false
-    t.integer "entry_fee", null: false
-    t.text "members_wanted", null: false
+    t.string "practice_day"
+    t.string "annual_fee", null: false
+    t.string "entry_fee", null: false
+    t.boolean "members_wanted", null: false
+    t.text "recruitment_targrt"
     t.text "introduction", null: false
-    t.string "homepage"
-    t.string "contact_infomation"
+    t.string "homepage_url"
     t.string "image_id"
-    t.integer "user_id"
-    t.integer "article_id"
-    t.integer "prefecture_id"
-    t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "latitude"
@@ -98,6 +107,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_072151) do
     t.datetime "remember_created_at"
     t.string "nickname", null: false
     t.integer "sex", null: false
+    t.integer "age", null: false
     t.string "profile_image_id"
     t.integer "postal_code", null: false
     t.string "address", null: false
@@ -107,7 +117,6 @@ ActiveRecord::Schema.define(version: 2020_08_11_072151) do
     t.text "introduction", default: "よろしくお願いします"
     t.integer "team_id"
     t.integer "bookmark_id"
-    t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_code"
