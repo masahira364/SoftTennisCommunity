@@ -1,62 +1,15 @@
 <div class="container">
+	<!-- チームの投稿一覧 -->
 	<% if params[:team_id] %>
-	<h1 class="text-center"><%= @team.name %>　投稿一覧</h1>
-
-	<%= link_to "新規投稿", new_article_path %>
-
-	<table class="table table-bordered">
-		<thead>
-			<tr class="success">
-				<th>タイトル</th>
-				<th>投稿チーム</th>
-				<th>投稿日</th>
-				<th>いいね数</th>
-				<th>コメント数</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @team.articles.each do |article| %>
-				<tr>
-					<td><%= link_to article.title, article_path(article) %></td>
-					<td>
-						<%= link_to article.team.name, team_path(article.team_id) %>
-					</td>
-					<td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-					<td><%= article.favorites.count %></td>
-					<td><%= article.comments.count %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-
+		<h1 class="text-center"><%= @team.name %>　投稿一覧</h1>
+		<%= render 'index', articles: @articles %>
+    <!-- タグの名前での検索 -->
+	<% elsif params[:tag_name] %>
+		<h1 class="text-center"><%= @tag %> タグの投稿一覧</h1>
+		<%= render 'index', articles: @articles %>
+    <!-- 全一覧 -->
 	<% else %>
-
-	<h1 class="text-center">チーム日記　投稿一覧</h1>
-
-	<%= link_to "新規投稿", new_article_path %>
-
-	<table class="table table-bordered">
-		<thead>
-			<tr class="success">
-				<th>タイトル</th>
-				<th>投稿チーム</th>
-				<th>投稿日時</th>
-				<th>コメント数</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @articles.each do |article| %>
-				<tr>
-					<td><%= link_to article.title, article_path(article) %></td>
-					<td>
-						<%= link_to article.team.name, team_path(article.team_id) %>
-					</td>
-					<td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-					<td><%= article.comments.count %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-
+		<h1 class="text-center">チーム日記　投稿一覧</h1>
+		<%= render 'index', articles: @articles %>
 	<% end %>
 </div>

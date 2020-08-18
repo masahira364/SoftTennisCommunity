@@ -6,6 +6,8 @@ class Article < ApplicationRecord
 
 	attachment :image
 
+	acts_as_taggable
+
 	# いいね
 	def favorite_by?(user)
 		favorites.where(user_id: user.id).exists?

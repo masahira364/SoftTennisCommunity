@@ -1,0 +1,29 @@
+<%= link_to "新規投稿", new_article_path %>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr class="success">
+				<th>タイトル</th>
+				<th>投稿チーム</th>
+				<th>投稿日</th>
+				<th>タグ</th>
+				<th>いいね数</th>
+				<th>コメント数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% articles.each do |article| %>
+				<tr>
+					<td><%= link_to article.title, article_path(article) %></td>
+					<td>
+						<%= link_to article.team.name, team_path(article.team_id) %>
+					</td>
+					<td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+					<td><%= render 'articles/tag_list', tag_list: article.tag_list %>
+					</td>
+					<td><%= article.favorites.count %></td>
+					<td><%= article.comments.count %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>

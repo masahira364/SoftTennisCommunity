@@ -1,8 +1,16 @@
 class ArticlesController < ApplicationController
 
 	def index
-		@team = Team.find_by(id: params[:team_id])
 		@articles = Article.all
+		# チームページから遷移してきた場合
+		if params[:team_id]
+		  @team = Team.find_by(id: params[:team_id])
+		  @articles = Article.where(team_id: params[:team_id])
+		# タグの名前で検索する場合
+		elsif params[:tag_name]
+		  @tag = params[:tag_name]
+		  @articles = Article.tagged_with("#{params[:tag_name]}")
+		end
 	end
 
 	def show
@@ -49,6 +57,6 @@ class ArticlesController < ApplicationController
 
 	private
 	def article_params
-		params.require(:article).permit(:title, :body, :image)
+		params.require(:article).permit(:title, :body, :image, :tag_list)
 	end
 end
