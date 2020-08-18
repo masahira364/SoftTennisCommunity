@@ -5,20 +5,24 @@ Rails.application.routes.draw do
 
   resources :users do
     get '/bookmarks' => 'users#bookmarks', on: :member
+    get '/favorites' => 'users#favorites', on: :member
+    get '/entries' => 'users#entries', on: :member
   end
 
   resources :teams, shallow: true do
     resource :bookmarks, only: %i[create destroy]
     resource :relationships, only: [:create, :destroy]
+    resources :approvals, only: [:create, :destroy]
     get '/matching' => 'relationships#matching'
     get :bookmarks, on: :collection
     member do
       get '/calendar' => 'teams#calendar'
       get '/map' => 'teams#map'
       get '/member' => 'teams#member'
+      get '/approvals' => 'teams#approvals'
     end
   end
-  
+
   resources :events do
     resources :entries, only: [:create, :destroy]
   end

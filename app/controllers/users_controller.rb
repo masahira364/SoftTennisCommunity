@@ -10,7 +10,15 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
     if @user.update(user_params)
-       redirect_to user_path(@user)
+      # プロフィール更新時
+      if params[:user][:team_id] == nil
+         redirect_to user_path(@user)
+      # チーム参加承認時
+      else
+         @approval = Approval.find_by(team_id: params[:user][:team_id])
+         @approval.destroy
+         redirect_to request.referer
+      end
     else
        render :edit
     end
@@ -18,6 +26,16 @@ class UsersController < ApplicationController
 
   def bookmarks
     @user = current_user
+  end
+
+  def favorites
+    @user = current_user
+    @articles = @user.favorite_articles
+  end
+
+  def entries
+    @user = current_user
+    @events = @user.entry_events
   end
 
 

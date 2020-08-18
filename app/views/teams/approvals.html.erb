@@ -1,0 +1,39 @@
+<div class="container">
+	<h1 class="text-center"><%= @team.name %> への参加希望者</h1>
+
+	<table class="table">
+		<thead>
+			<tr class="success">
+				<th class="col-xs-2"></th>
+				<th>性別</th>
+				<th>ポジション</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @approvals.each do |approval| %>
+				<tr>
+					<td>
+						<%= attachment_image_tag(approval.user, :profile_image, fallback: 'sports_soft_tennis_ball.png', size: '50x50') %>
+						<%= link_to approval.user.nickname, user_path(approval.user) %>
+					</td>
+					<td><%= approval.user.sex %></td>
+					<td><%= approval.user.position %></td>
+					<td>
+						<%= form_with model: approval.user, url: user_path(approval.user) do |f| %>
+							<%= f.hidden_field :team_id, :value => @team.id %>
+							<%= f.submit "承認する", class: 'btn btn-primary' %></td>
+						<% end %>
+					</td>
+					<td><%= link_to "拒否する", approval_path(approval), method: :delete, class: 'btn btn-danger' %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<div class="row text-center">
+		<%= link_to "Back", team_path(@team), class: "btn btn-primary" %>
+	</div>
+</div>

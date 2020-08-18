@@ -77,6 +77,8 @@ gem 'momentjs-rails'
 gem 'acts-as-taggable-on'
 gem 'geocoder'
 gem 'jp_prefecture'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 group :production do
   gem 'mysql2'

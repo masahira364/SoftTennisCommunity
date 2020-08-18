@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
 
-  before_action :set_team, only: [:show, :edit, :update, :map, :calendar, :member, :matching]
+  before_action :set_team, only: [:show, :edit, :update, :map, :calendar, :member, :matching, :approvals]
 
   def index
     @q = Team.ransack(params[:q])
@@ -19,8 +19,10 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: current_user.id)
-    @current_team = Team.find(@user.team_id)
+    @user = current_user
+    unless @user.team_id == nil
+      @current_team = Team.find(@user.team_id)
+    end
     @man = @team.users.where(sex: "男性").count
     @woman = @team.users.where(sex: "女性").count
   end
@@ -62,6 +64,10 @@ class TeamsController < ApplicationController
   end
 
   def member
+  end
+
+  def approvals
+    @approvals = Approval.where(team_id: @team.id)
   end
 
   private

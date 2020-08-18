@@ -4,13 +4,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 空白不可
+  validates :nickname, presence: true
+  validates :sex, presence: true
+  validates :age, presence: true
+  validates :postal_code, presence: true
+  validates :prefecture_code, presence: true
+  validates :address, presence: true
+
+
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_teams, through: :bookmarks, source: :team
   has_many :entries
   has_many :entry_events, through: :entries, source: :event
   has_many :favorites
-  has_many :favorite_articles, through: :favorite, source: :article
+  has_many :favorite_articles, through: :favorites, source: :article
   has_many :comments, dependent: :destroy
+  has_many :approvals, dependent: :destroy
   belongs_to :team, optional: true
 
   attachment :profile_image

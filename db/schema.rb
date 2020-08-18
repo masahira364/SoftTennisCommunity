@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_032410) do
+ActiveRecord::Schema.define(version: 2020_08_18_010054) do
+
+  create_table "approvals", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -40,10 +47,12 @@ ActiveRecord::Schema.define(version: 2020_08_17_032410) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_entries_on_event_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -58,10 +67,12 @@ ActiveRecord::Schema.define(version: 2020_08_17_032410) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "article_id"
+    t.integer "user_id", null: false
+    t.integer "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_favorites_on_article_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "prefectures", force: :cascade do |t|

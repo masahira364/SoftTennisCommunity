@@ -36,27 +36,48 @@
 			</tr>
 			<tr>
 				<td class="info">自己紹介</td>
-				<td><%= @user.introduction %></td>
+				<td>
+					<% if @user.introduction.blank? %>
+						<span>よろしくお願いします</span>
+					<% else %>
+						<%= @user.introduction %>
+					<% end %>
+				</td>
 			</tr>
 		</table>
 	</div>
 </div>
 
-<div class="row button-group">
 		<div class="text-center">
 			<% if @user == current_user %>
-				<div class="col-xs-4">
-					<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary btn-block' %>
+				<div class="row button-group">
+					<div class="col-xs-4">
+						<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary btn-block' %>
+					</div>
+					<div class="col-xs-4">
+						<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary btn-block' %>
+					</div>
+					<div class="col-xs-4">
+						<% if @user.team.present? %>
+							<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary btn-block' %>
+						<% else %>
+							<%= link_to "チームを探す", team_search_path, class: 'btn btn-primary btn-block' %>
+						<% end %>
+					</div>
 				</div>
-				<div class="col-xs-4">
-					<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary btn-block' %>
-				</div>
-				<div class="col-xs-4">
-					<% if @user.team.present? %>
-						<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary btn-block' %>
-					<% else %>
-						<%= link_to "チームを探す", team_search_path, class: 'btn btn-primary btn-block' %>
-					<% end %>
+
+				<div class="row button-group">
+					<div class="col-xs-4">
+						<%= link_to "いいねした投稿", favorites_user_path(@user), class: 'btn btn-primary btn-block' %>
+					</div>
+
+					<div class="col-xs-4">
+						<%= link_to "予定一覧", entries_user_path(@user), class: 'btn btn-primary btn-block' %>
+					</div>
+
+					<div class="col-xs-4">
+						<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary btn-block' %>
+					</div>
 				</div>
 			<% end %>
 		</div>
