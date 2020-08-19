@@ -10,10 +10,26 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to "マイページ", user_path(current_user) %></li>
-              <li><%= link_to "チーム検索", team_search_path, class: "glyphicon glyphicon-search" %></li>
-              <li><%= link_to "チーム日記一覧", articles_path %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li>
+                  <%= link_to user_path(current_user) do %>
+                    <span><%= icon 'far', 'address-book'%> マイページ </span>
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to team_search_path do %>
+                    <span><%= icon 'fas', 'search-location'%> チーム検索 </span>
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to articles_path do %>
+                    <span><%= icon 'fas', 'book'%> チーム日記一覧 </span>
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <span><%= icon 'fas', 'sign-out-alt' %> ログアウト </span>
+                  <% end %>
+              </li>
             <% else %>
               <li><%= link_to "概要", "#" %></li>
               <li><%= link_to "チーム検索", team_search_path, class: "glyphicon glyphicon-search" %></li>

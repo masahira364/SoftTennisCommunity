@@ -7,8 +7,30 @@
 	</div>
 
 	<!-- フォローボタン -->
-	<div id="follow_<%= @team.id %>">
-		<%= render 'follow', team: @team %>
+	<div class="row">
+		<div class="col-xs-3">
+			<div id="follow_<%= @team.id %>">
+				<%= render 'follow', team: @team %>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-3">
+		<% if @team.facebook.present? %>
+			<%= link_to @team.facebook, target: :_blank do %>
+				<%= icon "fab", "facebook" %>
+			<% end %>
+		<% end %>
+		<% if @team.twitter.present? %>
+			<%= link_to @team.twitter, target: :_blank do %>
+				<%= icon "fab", "twitter" %>
+			<% end %>
+		<% end %>
+		<% if @team.instagram.present? %>
+			<%= link_to @team.instagram, target: :_blank do %>
+				<%= icon "fab", "facebook" %>
+			<% end %>
+		<% end %>
 	</div>
 
 	<table class="table table-bordered table-condensed">
@@ -44,7 +66,7 @@
 				<th><% if @team.users.blank? %>
 						0
 					<% else %>
-						<%= @team.users.average(:age).floor %>歳
+						<%= @team.users.average(:age) %>歳
 					<% end %>
 				</th>
 			</tr>
