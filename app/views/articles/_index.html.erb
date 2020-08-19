@@ -1,3 +1,39 @@
+<div class="row">
+		<div class="col-xs-3 text-center">
+			<h3>人気タグ(5位まで)</h3>
+			<table class="table">
+				<% @tags.zip(@num) do |tag, num| %>
+					<tr>
+						<td><%= num %>位</td>
+						<td><%= link_to "#{tag.name} (#{tag.taggings_count})", articles_path(tag_name: tag) %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-3 text-center">
+			<h3>人気投稿(5位まで)</h3>
+			<table class="table">
+				<% @favorite_ranks.zip(@num) do |article, num| %>
+					<tr>
+						<td><%= num %>位</td>
+						<td><%= link_to article.title, article_path(article) %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-3 text-center">
+			<h3>投稿が多いチーム</h3>
+			<table class="table">
+				<% @post_ranks.zip(@num) do |team, num| %>
+					<tr>
+						<td><%= num %>位</td>
+						<td><%= link_to team.name, team_path(team) %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+
 <%= link_to "新規投稿", new_article_path %>
 
 	<table class="table table-bordered">

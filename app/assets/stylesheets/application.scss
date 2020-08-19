@@ -11,8 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
- *= require_self
  *= require fullcalendar
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk
+ *= require_self
+
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
@@ -39,8 +42,6 @@ html {
  	margin-bottom: 60px;
   padding-top: 30px;
   padding-bottom: 50px;
-  background-image: image-url("white0081.png");
-  background-size: cover;
  }
 
  .footer {
@@ -95,12 +96,4 @@ html {
 
 .navbar-right{
   margin-right: 50px;
-}
-
-a:link{
-  color: #FFF;
-}
-
-a:visited{
-  color: #000080;
 }

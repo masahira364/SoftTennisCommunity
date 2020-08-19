@@ -1,8 +1,8 @@
 class CreateEntries < ActiveRecord::Migration[5.2]
   def change
     create_table :entries do |t|
-      t.references :user, foreign_key: true, null: false
-      t.references :event, foreign_key: true, null: false
+      t.integer :user_id, null: false
+      t.integer :event_id, foreign_key: true, null: false
       t.timestamps
     end
   end

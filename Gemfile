@@ -79,6 +79,8 @@ gem 'geocoder'
 gem 'jp_prefecture'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'jquery-ui-rails'
+gem 'gon'
 
 group :production do
   gem 'mysql2'

@@ -1,7 +1,14 @@
 class ArticlesController < ApplicationController
 
 	def index
-		@articles = Article.all
+		@tags = ActsAsTaggableOn::Tag.most_used(5)
+		@num = (1...5)
+		# いいねの多い投稿ランキング
+		@favorite_ranks = Article.find(Favorite.group(:article_id)
+			     .order('count(article_id) desc').limit(5).pluck(:article_id))
+		# 投稿の多いチームランキング
+		@post_ranks = Team.where(id: Article.group(:team_id)
+			     .order('count(team_id) desc').limit(5).pluck(:team_id))
 		# チームページから遷移してきた場合
 		if params[:team_id]
 		  @team = Team.find_by(id: params[:team_id])
@@ -10,6 +17,8 @@ class ArticlesController < ApplicationController
 		elsif params[:tag_name]
 		  @tag = params[:tag_name]
 		  @articles = Article.tagged_with("#{params[:tag_name]}")
+		else
+			@articles = Article.all.order(created_at: :desc)
 		end
 	end
 
@@ -20,6 +29,7 @@ class ArticlesController < ApplicationController
 
 	def new
 		@article = Article.new
+		gon.available_tags = Article.tags_on(:tags).pluck(:name)
 	end
 
 	def create
@@ -35,6 +45,8 @@ class ArticlesController < ApplicationController
 
 	def edit
 		@article = Article.find(params[:id])
+		gon.article_tags = @article.tag_list
+		gon.available_tags = Article.tags_on(:tags).pluck(:name)
 	end
 
 	def update

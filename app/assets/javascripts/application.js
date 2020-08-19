@@ -11,9 +11,11 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require tag-it
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/lang/ja
