@@ -5,6 +5,8 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 </div>
 
+<%= link_to "facebook", user_facebook_omniauth_authorize_path %>
+<%= link_to "google", user_google_oauth2_omniauth_authorize_path%>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-4">
 

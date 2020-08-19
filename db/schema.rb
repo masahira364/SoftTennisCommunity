@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_062305) do
+ActiveRecord::Schema.define(version: 2020_08_19_010620) do
 
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -140,11 +140,12 @@ ActiveRecord::Schema.define(version: 2020_08_18_062305) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "nickname", null: false
-    t.integer "sex", null: false
-    t.integer "age", null: false
+    t.integer "sex"
+    t.integer "age"
     t.string "profile_image_id"
-    t.integer "postal_code", null: false
-    t.string "address", null: false
+    t.integer "postal_code"
+    t.integer "prefecture_code"
+    t.string "address"
     t.string "position"
     t.string "racket"
     t.string "good_play"
@@ -153,7 +154,8 @@ ActiveRecord::Schema.define(version: 2020_08_18_062305) do
     t.integer "bookmark_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_code"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

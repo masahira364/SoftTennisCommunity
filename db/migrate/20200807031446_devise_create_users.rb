@@ -33,11 +33,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       t.string :nickname, null: false
-      t.integer :sex, null: false
-      t.integer :age, null: false
+      t.integer :sex
+      t.integer :age
       t.string :profile_image_id
-      t.integer :postal_code, null: false
-      t.string :address, null: false
+      t.integer :postal_code
+      t.integer :prefecture_code
+      t.string :address
       t.string :position
       t.string :racket
       t.string :good_play

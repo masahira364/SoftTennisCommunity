@@ -81,6 +81,9 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'jquery-ui-rails'
 gem 'gon'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 
 group :production do
   gem 'mysql2'

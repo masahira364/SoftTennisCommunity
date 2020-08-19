@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'home#top'
   get 'home/about'
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: "users/registrations",
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   resources :users do
     get '/bookmarks' => 'users#bookmarks', on: :member
