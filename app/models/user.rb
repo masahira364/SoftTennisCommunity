@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :favorite_articles, through: :favorites, source: :article
   has_many :comments, dependent: :destroy
   has_many :approvals, dependent: :destroy
+  # 通知機能
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   belongs_to :team, optional: true
 
   attachment :profile_image
@@ -34,7 +37,7 @@ class User < ApplicationRecord
 	  self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
 	end
 
-  # omniauth
+  # SNS認証情報の読み込み
    def self.find_or_create_for_oauth(auth)
     find_or_create_by!(email: auth.info.email) do |user|
       user.provider = auth.provider,

@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 		@comment = current_user.comments.new(comment_params)
 		@comment.article_id = @article.id
 		if @comment.save
+		   @comment.create_notification_comment(current_user, @comment.id)
 		   redirect_to request.referer
 		else
 		   render 'articles/show'

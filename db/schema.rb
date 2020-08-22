@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_010620) do
+ActiveRecord::Schema.define(version: 2020_08_19_075607) do
 
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_010620) do
     t.text "body"
     t.string "image_id"
     t.integer "team_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -69,6 +70,37 @@ ActiveRecord::Schema.define(version: 2020_08_19_010620) do
     t.integer "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.integer "team_visitor_id"
+    t.integer "team_visited_id"
+    t.integer "article_id"
+    t.integer "comment_id"
+    t.integer "event_id"
+    t.integer "favorite_id"
+    t.integer "entry_id"
+    t.integer "approval_id"
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["approval_id"], name: "index_notifications_on_approval_id"
+    t.index ["article_id"], name: "index_notifications_on_article_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["entry_id"], name: "index_notifications_on_entry_id"
+    t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["favorite_id"], name: "index_notifications_on_favorite_id"
+    t.index ["followed_id"], name: "index_notifications_on_followed_id"
+    t.index ["follower_id"], name: "index_notifications_on_follower_id"
+    t.index ["team_visited_id"], name: "index_notifications_on_team_visited_id"
+    t.index ["team_visitor_id"], name: "index_notifications_on_team_visitor_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "prefectures", force: :cascade do |t|

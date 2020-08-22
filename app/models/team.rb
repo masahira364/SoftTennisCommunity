@@ -6,6 +6,9 @@ class Team < ApplicationRecord
 	has_many :events, dependent: :destroy
 	has_many :approvals, dependent: :destroy
 
+	has_many :active_team_notifications, class_name: "Notification", foreign_key: "team_visitor_id", dependent: :destroy
+  	has_many :passive_team_notifications, class_name: "Notification", foreign_key: "team_visited_id", dependent: :destroy
+
 	attachment :image
 
 	# 住所自動入力
@@ -41,7 +44,7 @@ class Team < ApplicationRecord
 	def following?(team)
 		following_team.include?(team)
 	end
-
+	# 相互フォロー
 	def matchers
 		Team.where(id: follower.select(:followed_id))
 		.where(id: followed.select(:follower_id))
@@ -51,4 +54,15 @@ class Team < ApplicationRecord
 	def bookmark_by?(user)
 		bookmarks.where(user_id: user.id).exists?
 	end
+
+	def create_notification_follow!(current_user)
+    temp = Notification.where(["team_visitor_id = ? and team_visited_id = ? and action = ? ",current_user.team_id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.team.active_team_notifications.new(
+        team_visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
 end

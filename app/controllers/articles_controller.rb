@@ -1,14 +1,6 @@
 class ArticlesController < ApplicationController
 
 	def index
-		@tags = ActsAsTaggableOn::Tag.most_used(5)
-		@num = (1...5)
-		# いいねの多い投稿ランキング
-		@favorite_ranks = Article.find(Favorite.group(:article_id)
-			     .order('count(article_id) desc').limit(5).pluck(:article_id))
-		# 投稿の多いチームランキング
-		@post_ranks = Team.where(id: Article.group(:team_id)
-			     .order('count(team_id) desc').limit(5).pluck(:team_id))
 		# チームページから遷移してきた場合
 		if params[:team_id]
 		  @team = Team.find_by(id: params[:team_id])
@@ -18,8 +10,16 @@ class ArticlesController < ApplicationController
 		  @tag = params[:tag_name]
 		  @articles = Article.tagged_with("#{params[:tag_name]}")
 		else
-			@articles = Article.all.order(created_at: :desc)
+		  @articles = Article.all.order(created_at: :desc)
 		end
+		@tags = ActsAsTaggableOn::Tag.most_used(5)
+		@num = (1...5)
+		# いいねの多い投稿ランキング
+		@favorite_ranks = Article.find(Favorite.group(:article_id)
+			     .order('count(article_id) desc').limit(5).pluck(:article_id))
+		# 投稿の多いチームランキング
+		@post_ranks = Team.where(id: Article.group(:team_id)
+			     .order('count(team_id) desc').limit(5).pluck(:team_id))
 	end
 
 	def show
@@ -37,6 +37,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params)
 		@article.team_id = @team.id
 		if @article.save
+		   @article.create_notification_favorite(@team)
 		   redirect_to article_path(@article)
 		else
 			render :new

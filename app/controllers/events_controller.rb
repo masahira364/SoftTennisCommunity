@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 		@team = Team.find_by(id: params[:team_id])
 		@event = Event.new(event_params)
 	    if @event.save
+	       @event.create_notification_event(current_user)
 	       redirect_to events_path(team_id: params[:event][:team_id])
 	    else
 	       render :new

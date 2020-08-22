@@ -6,7 +6,7 @@
 				<p>投稿日：<%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></p>
 			</div>
 			<div class="col-xs-3">
-				<p>投稿チーム：<%= link_to @article.team.name, team_path(@article.team) %></p>
+				<p>投稿チーム：<%= link_to @article.team.name, team_path(@article.team_id) %></p>
 			</div>
 			<div class="col-xs-4 ">
 				<%= render 'tag_list', tag_list: @article.tag_list %>
