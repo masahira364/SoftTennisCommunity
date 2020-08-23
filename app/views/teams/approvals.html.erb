@@ -9,6 +9,7 @@
 				<th>ポジション</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,6 +21,15 @@
 					</td>
 					<td><%= approval.user.sex %></td>
 					<td><%= approval.user.position %></td>
+					<td><% if approval.event_id.nil? %>
+							<%= "チームへの参加希望" %>
+						<% else %>
+							<%= "予定への参加希望" %><br>
+							<%= Event.find(approval.event_id).start_date.strftime("%Y-%m-%d") %>
+							<%= link_to event_path(approval.event_id) do %>
+								<%= Event.find(approval.event_id).title %>
+							<% end %>
+						<% end %>
 					<td>
 						<%= form_with model: approval.user, url: user_path(approval.user) do |f| %>
 							<%= f.hidden_field :team_id, :value => @team.id %>

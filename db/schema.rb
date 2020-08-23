@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
   create_table "approvals", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "team_id", null: false
+    t.integer "event_id"
+    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

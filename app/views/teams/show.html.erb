@@ -130,7 +130,14 @@
 			<% if @user.team_id == @team.id %>
 				<%= link_to "参加希望者", team_approvals_path(@team), class: "btn btn-primary btn-block" %>
 			<% elsif @user.team_id == nil %>
-				<%= link_to "チーム参加の申請", team_approvals_path(@team.id), method: :post, data: {confirm: "参加の申請をしますか？"}, class: "btn btn-primary btn-block" %>
+				<% if @team.approvals.pluck(:user_id).include?(current_user.id) %>
+					<%= link_to "参加の申請中", "#", class: "btn btn-primary btn-block" %>
+				<% else %>
+					<%= form_with model:@team.approvals, url: team_approvals_path(@team.id) do |f| %>
+						<%= f.hidden_field :team_id, :value => @team_id %>
+						<%= f.submit "チーム参加の申請", class: "btn btn-primary" %>
+					<% end %>
+				<% end %>
 			<% else %>
 				<%= link_to "他チームに参加済", "#", class: "btn btn-primary btn-block" %>
 			<% end %>
@@ -139,5 +146,11 @@
 	</div>
 	<%= link_to "参加希望者", team_approvals_path(@team), class: "btn btn-primary btn-block" %>
 	<%= link_to "通知", notifications_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
+	<% if @user.team_id == @team.id %>
+		<%= form_with model:current_user, url: user_path(current_user, team_id: @team.id) do |f| %>
+			<%= f.hidden_field :team_id, :value => nil %>
+			<%= f.submit "チームを脱退する", class: "btn btn-primary" %>
+		<% end %>
+	<% end %>
 
 </div>

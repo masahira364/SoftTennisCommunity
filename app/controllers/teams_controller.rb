@@ -68,6 +68,7 @@ class TeamsController < ApplicationController
 
   def approvals
     @approvals = Approval.where(team_id: @team.id)
+    @event_approvals = Approval.where(team_id: @team.id, action: 'entry')
   end
 
   private

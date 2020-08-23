@@ -47,4 +47,12 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+  def create_notification_user(user)
+      notification = user.active_notifications.new(
+        team_visited_id: user.team_id,
+        action: 'team'
+      )
+      notification.save if notification.valid?
+  end
 end

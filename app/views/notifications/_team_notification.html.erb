@@ -1,4 +1,5 @@
 <div class="container">
+	<h1 class="text-center">通知一覧</h1>
 	<div class="col-xs-4 col-xs-offset-4">
 		<div class="form-inline">
 
@@ -10,6 +11,10 @@
 				<% end %>
 
 				<% case notification.action %>
+					<% when 'team' then %>
+						<%= 'チームに参加しました' %>
+					<% when 'withdrawal' then %>
+						<%= 'チームを脱退しました' %>
 					<% when 'follow' then %>
 						<%= 'あなたをフォローしました' %>
 					<% when 'favorite' then %>
@@ -47,8 +52,15 @@
 							<%= notification.event.title %>
 						</p>
 					<% when 'approval' then %>
-						<%= link_to 'チームへの参加', approvals_team_path(id: notification.team_visited), style: "font-weight: bold;" %>
-						<%= "を希望しています" %>
+					<!-- チームか予定への参加申請か判定 -->
+						<% if notification.event_id.nil? %>
+							<%= link_to 'チームへの参加', approvals_team_path(id: notification.team_visited), style: "font-weight: bold;" %>
+							<%= "を希望しています" %>
+						<% else %>
+							<%= link_to '予定への参加', event_path(notification.event_id), style: "font-weight: bold;" %>
+							<%= "を希望しています" %>
+						<% end %>
+
 				<% end %>
 				<div class="small text-muted text-right">
 	    			<%= time_ago_in_words(notification.created_at).upcase %><%= '前' %>

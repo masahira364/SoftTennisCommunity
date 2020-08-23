@@ -10,17 +10,29 @@ class UsersController < ApplicationController
   def update
   	@user = User.find(params[:id])
     if @user.update(user_params)
-      # プロフィール更新時
-      if params[:user][:team_id] == nil
-         redirect_to user_path(@user)
-      # チーム参加承認時
-      else
-         @approval = Approval.find_by(team_id: params[:user][:team_id])
-         @approval.destroy
-         redirect_to request.referer
-      end
+        # プロフィール更新時
+        if params[:user][:team_id] == nil
+           redirect_to user_path(@user)
+        # チーム参加承認時
+        elsif params[:user][:team_id] != nil
+             # チーム脱退時の処理
+             if @user.team_id.nil?
+                  @approval = Notification.create(visitor_id: @user.id, team_visited_id: params[:team_id],
+                                             action: 'withdrawal')
+                  @approval.save
+                  redirect_to request.referer
+              else
+                # 承認申請を削除
+                @approval = Approval.find_by(team_id: params[:user][:team_id],
+                                        user_id: @user.id, event_id: nil)
+                @approval.destroy
+                # 参加の通知を作成
+                @user.create_notification_user(@user)
+                redirect_to request.referer
+             end
+        end
     else
-       render :edit
+      render :edit
     end
   end
 
