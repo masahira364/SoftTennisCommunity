@@ -31,10 +31,21 @@
                   <% end %>
               </li>
             <% else %>
-              <li><%= link_to "概要", "#" %></li>
-              <li><%= link_to "チーム検索", team_search_path, class: "glyphicon glyphicon-search" %></li>
-              <li><%= link_to "新規登録", new_user_registration_path %></li>
-              <li><%= link_to "ログイン", new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
+              <li>
+                  <%= link_to team_search_path do %>
+                    <span><%= icon 'fas', 'search-location'%> チーム検索 </span>
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to new_user_registration_path do %>
+                    <span> <%= icon 'fas', "sign-in-alt" %> 新規登録</span>
+                  <% end %>
+              </li>
+              <li>
+                  <%= link_to new_user_session_path do %>
+                    <span><%= icon 'fas', 'door-open' %>ログイン</span>
+                  <% end %>
+              </li>
             <% end %>
           </ul>
         </nav>

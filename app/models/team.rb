@@ -55,7 +55,7 @@ class Team < ApplicationRecord
 		bookmarks.where(user_id: user.id).exists?
 	end
 
-	def create_notification_follow!(current_user)
+	def create_notification_follow(current_user)
     temp = Notification.where(["team_visitor_id = ? and team_visited_id = ? and action = ? ",current_user.team_id, id, 'follow'])
     if temp.blank?
       notification = current_user.team.active_team_notifications.new(

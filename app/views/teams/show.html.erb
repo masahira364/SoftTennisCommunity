@@ -16,21 +16,23 @@
 	</div>
 
 	<div class="col-xs-3">
-		<% if @team.facebook.present? %>
-			<%= link_to @team.facebook, target: :_blank do %>
-				<%= icon "fab", "facebook" %>
+		<div class="sns-link">
+			<% if @team.facebook.present? %>
+				<%= link_to @team.facebook, target: :_blank do %>
+					<%= icon "fab", "facebook" %>
+				<% end %>
 			<% end %>
-		<% end %>
-		<% if @team.twitter.present? %>
-			<%= link_to @team.twitter, target: :_blank do %>
-				<%= icon "fab", "twitter" %>
+			<% if @team.twitter.present? %>
+				<%= link_to @team.twitter, target: :_blank do %>
+					<%= icon "fab", "twitter" %>
+				<% end %>
 			<% end %>
-		<% end %>
-		<% if @team.instagram.present? %>
-			<%= link_to @team.instagram, target: :_blank do %>
-				<%= icon "fab", "facebook" %>
+			<% if @team.instagram.present? %>
+				<%= link_to @team.instagram, target: :_blank do %>
+					<%= icon "fab", "facebook" %>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
 	</div>
 
 	<table class="table table-bordered table-condensed">
