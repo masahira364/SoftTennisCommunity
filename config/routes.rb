@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    resources :entries, only: [:create, :destroy]
+    resource :entries, only: [:create, :destroy]
   end
 
   get '/search' => 'teams#search'

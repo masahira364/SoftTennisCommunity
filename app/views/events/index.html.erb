@@ -10,6 +10,13 @@
        
 
     <div id="calendar"></div>
+    <% if @team.id == current_user.team_id %>
+        <%= render 'form_new', event: @event %>
+    <% end %>
+
+     <div id="modalEvent">
+        <%= render 'show', events: @events %>
+    </div>
 
 
 </div>
@@ -30,17 +37,20 @@ $('#calendar').fullCalendar({
         left: "month agendaWeek agendaDay ",
         center: "title"
     },
-    dayClick: function(date, jsEvent, view) {
-
-        var title = prompt('予定を入力してください:');
-
-        $('#calendar').fullCalendar('addEventSource', [{
-        id:date,
-        title: title,
-        start: date,
-        all_day: all_day
-    }]);
+    dayClick: function(start, end,  jsEvent, view) {
+        // クリックした日付を代入
+        $('#event_start_date_1i').val(moment(start).year());
+        $('#event_start_date_2i').val(moment(start).month()+1);
+        $('#event_start_date_3i').val(moment(start).date());
+        $('#event_end_date_1i').val(moment(start).year());
+        $('#event_end_date_2i').val(moment(start).month()+1);
+        $('#event_end_date_3i').val(moment(start).date());
+        $('#inputScheduleForm').modal('show');
     },
+    eventClick : function(event, jsEvent , view) {
+                jsEvent.preventDefault();
+                $(`#modalEvent${event.id}`).modal('show');
+            },
 
   });
 

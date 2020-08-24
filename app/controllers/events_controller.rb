@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 	def index
 		@team = Team.find_by(id: params[:team_id])
     	@events = Event.where(team_id: params[:team_id])
+    	@event = Event.new
   	end
 
 	def show

@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
                                   :member, :matching, :approvals]
 
   def index
-    @q = Team.ransack(params[:q]).page(params[:page]).per(10)
+    @q = Team.ransack(params[:q])
   	@teams = @q.result(distinct: true)
     @pref = params[:prefecture_code]
     @prefecture = JpPrefecture::Prefecture.find(@pref)

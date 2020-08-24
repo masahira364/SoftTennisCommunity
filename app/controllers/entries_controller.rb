@@ -8,7 +8,8 @@ class EntriesController < ApplicationController
 	end
 
 	def destroy
-		current_user.entries.find_by(event_id: params[:event_id]).destroy!
+		entry = current_user.entries.find_by(event_id: params[:event_id])
+		entry.destroy!
 		redirect_to request.referer
 	end
 end

@@ -8,7 +8,7 @@
  	height: 700px;
  	background-size: cover;
  	background-image: image-url("sky.jpg");
-  	position: relative;
+  position: relative;
  }
 
 .main-visual::before{
@@ -27,7 +27,7 @@
  	padding-bottom: 50px;
  	background-size: cover;
  	background-image: image-url("coat.jpg");
-  	position: relative;
+  position: relative;
 }
 .back-image::before{
     background-color: rgba(0,0,0,0.4);
@@ -51,8 +51,8 @@
  .about{
   	padding-top: 100px;
   	padding-bottom: 100px;
-  	background-size: cover;
  }
+
 
 
  .top-logo{
