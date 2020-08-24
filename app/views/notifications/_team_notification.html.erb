@@ -1,11 +1,14 @@
 <div class="container">
 	<div class="col-xs-4 col-xs-offset-4">
-		<div class="form-inline">
 
 			<% team_notifications.each do |notification| %>
 				<% if notification.visitor.present? %>
 					<span>
 						<%= link_to notification.visitor.nickname, user_path(notification.visitor) %>さんが
+					</span>
+				<% elsif notification.team_visitor.present? %>
+					<span>
+						<%= link_to notification.team_visitor.name, team_path(notification.team_visitor) %>さんが
 					</span>
 				<% end %>
 
@@ -15,7 +18,7 @@
 					<% when 'withdrawal' then %>
 						<%= 'チームを脱退しました' %>
 					<% when 'follow' then %>
-						<%= 'あなたをフォローしました' %>
+						<%= 'チームをフォローしました' %>
 					<% when 'favorite' then %>
 						<%= link_to 'チームの投稿', notification.article, style: "font-weight: bold;" %>
 						<%= "にいいねしました" %>
@@ -66,6 +69,6 @@
 	    		</div>
 	  			<hr>
 	  		<% end %>
-		</div>
+		
 	</div>
 </div>

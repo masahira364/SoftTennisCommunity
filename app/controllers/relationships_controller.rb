@@ -1,8 +1,9 @@
 class RelationshipsController < ApplicationController
 
 	def create
+		@team = Team.find(params[:team_id])
 		current_user.team.follow(params[:team_id])
-		current_user.team.create_notification_follow(current_user)
+		@team.create_notification_follow(current_user)
 		redirect_to request.referer
 	end
 

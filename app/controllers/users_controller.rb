@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy, 
+  before_action :set_user, only: [:show, :edit, :update, :destroy,
                 :bookmarks, :favorites, :entries, :confirm]
 
   before_action :correct_user, only: [:edit, :update ]
@@ -25,8 +25,9 @@ class UsersController < ApplicationController
         elsif params[:user][:team_id] != nil
              # チーム脱退時の処理
              if @user.team_id.nil?
-                  @approval = Notification.create(visitor_id: @user.id, team_visited_id: params[:team_id],
-                                             action: 'withdrawal')
+                  @approval = Notification.new(visitor_id: @user.id, 
+                                               team_visited_id: params[:team_id],
+                                               action: 'withdrawal')
                   @approval.save
                   redirect_to request.referer
               else

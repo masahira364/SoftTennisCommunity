@@ -1,0 +1,15 @@
+<% if team.facebook.present? %>
+	<%= link_to team.facebook, target: :_blank do %>
+		<%= icon "fab", "facebook" %>
+	<% end %>
+<% end %>
+<% if team.twitter.present? %>
+	<%= link_to team.twitter, target: :_blank do %>
+		<%= icon "fab", "twitter" %>
+	<% end %>
+<% end %>
+<% if team.instagram.present? %>
+	<%= link_to team.instagram, target: :_blank do %>
+		<%= icon "fab", "facebook" %>
+	<% end %>
+<% end %>

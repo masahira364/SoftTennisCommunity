@@ -1,14 +1,14 @@
 class TeamsController < ApplicationController
 
-  before_action :set_team, only: [:show, :edit, :update, :map, :calendar, :member, :matching, :approvals]
+  before_action :set_team, only: [:show, :edit, :update, :map, :calendar, 
+                                  :member, :matching, :approvals]
 
   def index
-    @q = Team.ransack(params[:q])
+    @q = Team.ransack(params[:q]).page(params[:page]).per(10)
   	@teams = @q.result(distinct: true)
     @pref = params[:prefecture_code]
     @prefecture = JpPrefecture::Prefecture.find(@pref)
     @prefecture_teams = Team.where(prefecture_code: @pref)
-    
   end
 
   def search
@@ -77,7 +77,7 @@ class TeamsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:name_cont, :prefecture_code_eq, :number_of_people_gteq)
+    params.require(:q).permit(:name_cont, :address_cont, :prefecture_code_eq, :number_of_people_gteq)
   end
 
   def team_params

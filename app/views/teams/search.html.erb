@@ -33,7 +33,7 @@
 			<tr>
 				<td><%= link_to team.name, team_path(team) %></td>
 				<td><%= team.prefecture_name %><%= team.address %></td>
-				<td><%= team.number_of_people %></td>
+				<td><%= team.users.count %></td>
 				<td>〇</td>
 			</tr>
 		<% end %>

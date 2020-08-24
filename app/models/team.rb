@@ -56,7 +56,8 @@ class Team < ApplicationRecord
 	end
 
 	def create_notification_follow(current_user)
-    temp = Notification.where(["team_visitor_id = ? and team_visited_id = ? and action = ? ",current_user.team_id, id, 'follow'])
+    temp = Notification.where(["team_visitor_id = ? and team_visited_id = ? and action = ? ",
+    							current_user.team.id, id, 'follow'])
     if temp.blank?
       notification = current_user.team.active_team_notifications.new(
         team_visited_id: id,
