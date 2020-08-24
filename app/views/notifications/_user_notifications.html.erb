@@ -9,6 +9,10 @@
 				</span>
 			<% end %>
 				<% case notification.action %>
+					<% when 'team' then %>
+						<%= 'チームに参加しました' %>
+					<% when 'withdrawal' then %>
+						<%= 'チームを脱退しました' %>
 					<% when 'follow' then %>
 						<%= 'あなたをフォローしました' %>
 					<% when 'favorite' then %>

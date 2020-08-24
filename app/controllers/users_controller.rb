@@ -1,14 +1,22 @@
 class UsersController < ApplicationController
+
+  before_action :set_user, only: [:show, :edit, :update, :destroy, 
+                :bookmarks, :favorites, :entries, :confirm]
+
+  before_action :correct_user, only: [:edit, :update ]
+
   def show
-  	@user = User.find(params[:id])
   end
 
   def edit
-  	@user = User.find(params[:id])
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to root_path
   end
 
   def update
-  	@user = User.find(params[:id])
     if @user.update(user_params)
         # プロフィール更新時
         if params[:user][:team_id] == nil
@@ -37,21 +45,32 @@ class UsersController < ApplicationController
   end
 
   def bookmarks
-    @user = current_user
   end
 
   def favorites
-    @user = current_user
     @articles = @user.favorite_articles
   end
 
   def entries
-    @user = current_user
     @events = @user.entry_events
+  end
+
+  def confirm
   end
 
 
   private
+  def set_user
+    @user = User.find(params[:id])
+  end
+  # 他ユーザーの遷移防止
+  def correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+
   def user_params
   	params.require(:user).permit(
   		:sex,

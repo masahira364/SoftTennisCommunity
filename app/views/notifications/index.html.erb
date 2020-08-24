@@ -1,16 +1,22 @@
 <!-- チームの通知 -->
 <% if params[:team_id] %>
 	<% if @team_notifications.exists? %>
+		<h1 class="text-center">通知一覧</h1>
 		<%= render 'team_notification', team_notifications: @team_notifications %>
-		<%= paginate @team_notifications %>
+		<div class="text-center">
+			<%= paginate @team_notifications %>
+		</div>
 	<% else %>
 		<h3 class="text-center">通知はありません</h3>
 	<% end %>
 <!-- ユーザーの通知 -->
 <% else %>
 	<% if @notifications.exists? %>
+		<h1 class="text-center">通知一覧</h1>
 		<%= render 'user_notifications', notifications: @notifications %>
-		<%= paginate @notifications %>
+		<div class="text-center">
+			<%= paginate @notifications %>
+		</div>
 	<% else %>
 		<h3 class="text-center">通知はありません</h3>
 	<% end %>

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get '/entries' => 'users#entries', on: :member
   end
 
+  get '/confirm' => 'users#confirm'
+
   resources :teams, shallow: true do
     resource :bookmarks, only: %i[create destroy]
     resource :relationships, only: [:create, :destroy]
