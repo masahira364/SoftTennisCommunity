@@ -1,22 +1,50 @@
 <div class="row">
 		<div class="col-xs-3 text-center">
-			<h3>人気タグ(5位まで)</h3>
+			<h3>人気タグ</h3>
 			<table class="table">
 				<% @tags.zip(@num) do |tag, num| %>
 					<tr>
 						<td><%= num %>位</td>
-						<td><%= link_to "#{tag.name} (#{tag.taggings_count})", articles_path(tag_name: tag) %></td>
+						<td>
+							<div class="tag">
+								<span class="label label-primary">
+									<%= link_to "#{tag.name}", articles_path(tag_name: tag) %>
+							</span>
+						</td>
+						<td>
+							<%= icon "fas", "tags" %>
+							<%= tag.taggings_count %>
+						</td>
 					</tr>
 				<% end %>
 			</table>
 		</div>
 		<div class="col-xs-3 text-center">
-			<h3>人気投稿(5位まで)</h3>
+			<h3>人気投稿</h3>
 			<table class="table">
 				<% @favorite_ranks.zip(@num) do |article, num| %>
 					<tr>
 						<td><%= num %>位</td>
 						<td><%= link_to article.title, article_path(article) %></td>
+						<td>
+							<%= icon "far", "thumbs-up" %>
+							<%= article.favorites.count %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-xs-3 text-center">
+			<h3>話題の投稿</h3>
+			<table class="table">
+				<% @comment_ranks.zip(@num) do |article, num| %>
+					<tr>
+						<td><%= num %>位</td>
+						<td><%= link_to article.title, article_path(article) %></td>
+						<td>
+							<%= icon "far", "comment-dots"%>
+							<%= article.comments.count %>
+						</td>
 					</tr>
 				<% end %>
 			</table>
@@ -28,6 +56,7 @@
 					<tr>
 						<td><%= num %>位</td>
 						<td><%= link_to team.name, team_path(team) %></td>
+						<td><%= icon "fas", "book" %><%= team.articles.count %></td>
 					</tr>
 				<% end %>
 			</table>
@@ -57,8 +86,8 @@
 					<td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
 					<td><%= render 'articles/tag_list', tag_list: article.tag_list %>
 					</td>
-					<td><%= article.favorites.count %></td>
-					<td><%= article.comments.count %></td>
+					<td><%= icon "far", "thumbs-up" %><%= article.favorites.count %></td>
+					<td><%= icon "far", "comment-dots"%><%= article.comments.count %></td>
 				</tr>
 			<% end %>
 		</tbody>

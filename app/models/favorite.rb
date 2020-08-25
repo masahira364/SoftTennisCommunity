@@ -6,7 +6,7 @@ class Favorite < ApplicationRecord
 	def create_notification_favorite(current_user)
 		# すでにいいねされているか検索
 		temp = Notification.where(["visitor_id = ? and team_visited_id = ? and article_id = ? 
-									and favorite_id = ?and action = ? ", 
+									and favorite_id = ? and action = ? ", 
 									current_user.id, self.article.team_id, self.article_id,
 									id, 'favorite'])
 		# いいねされていなければ通知作成

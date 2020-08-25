@@ -12,11 +12,13 @@
     <div id="calendar"></div>
     <% if @team.id == current_user.team_id %>
         <%= render 'form_new', event: @event %>
-    <% end %>
+    
 
-     <div id="modalEvent">
-        <%= render 'show', events: @events %>
-    </div>
+         <div id="modalEvent">
+            <%= render 'show', events: @events %>
+        </div>
+
+    <% end %>
 
 
 </div>

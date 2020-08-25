@@ -8,10 +8,10 @@ class Comment < ApplicationRecord
 		# 自分以外のコメントしている人に通知
 		temp_ids = Comment.select(:user_id).where(article_id: id).where.not(user_id: current_user.id).distinct
 		temp_ids.each do |temp_id|
-			save_notification_comment(current_user, comment_id, temp_id['team_id'])
+			save_notification_comment(current_user, comment_id, temp_id['user_id'])
 		end
-		# だれもコメントしていなければ投稿者に通知
-		save_notification_comment(current_user, comment_id,team_id) if temp_ids.blank?
+		# だれもコメントしていなければ投稿者に通知 
+		save_notification_comment(current_user, comment_id, user_id) if temp_ids.blank?
 	end
 
 	def save_notification_comment(current_user, comment_id, team_visited_id)
