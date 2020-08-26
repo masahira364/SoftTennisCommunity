@@ -45,14 +45,14 @@
 			<%= link_to "一覧に戻る", articles_path(team_id: @article.team_id), class: "btn btn-primary" %>
 		</div>
 
-			<% if @article.team_id == current_user.team_id %>
-				<div class="row  button-group">
-					<div class="text-center">
-						<%= link_to "投稿編集", edit_article_path(@article), class: "btn btn-success" %>
-						<%= link_to "投稿削除", article_path(@article), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"} %>
-					</div>
+		<% if @article.team_id == current_user.team_id %>
+			<div class="row  button-group">
+				<div class="text-center">
+					<%= link_to "投稿編集", edit_article_path(@article), class: "btn btn-success" %>
+					<%= link_to "投稿削除", article_path(@article), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除してもよろしいですか？"} %>
 				</div>
-			<% end %>
+			</div>
+		<% end %>
 	</div>
 
 	<div id='modalComment' class="modal fade" tabindex="-1">
@@ -131,8 +131,7 @@
 							</div>
 						</div>
 					</div>
-					<% end %>
-				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>

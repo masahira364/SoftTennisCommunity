@@ -1,26 +1,22 @@
 <div class="container">
     <h1 class="text-center">チームの予定</h1>
-        
-            <div class="button-group">
-                <% if @team.id == current_user.team_id %>
-                    <%= link_to "予定登録", new_event_path(team_id: @team.id), class: "btn btn-primary" %>
-                <% end %>
-                <%= link_to "チームに戻る", team_path(@team), class: "btn btn-primary" %>
-            </div>
-       
+
+    <div class="button-group">
+        <%= link_to "チームに戻る", team_path(@team), class: "btn btn-primary" %>
+    </div>
 
     <div id="calendar"></div>
     <% if @team.id == current_user.team_id %>
+        <!-- 新規登録フォーム -->
         <%= render 'form_new', event: @event %>
-    
 
          <div id="modalEvent">
+            <!-- 予定詳細 -->
             <%= render 'show', events: @events %>
         </div>
-
+        <!-- 予定参加者 -->
+        <%= render 'entry_users', events: @events %>
     <% end %>
-
-
 </div>
 
 <script>
