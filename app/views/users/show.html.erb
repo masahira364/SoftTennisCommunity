@@ -8,12 +8,6 @@
 	</div>
 
 	<div class="row">
-		<div class="col-xs-4 col-xs-offset-4">
-			<%= link_to "通知", notifications_path(user_id: @user.id), class: 'btn btn-primary btn-block' %>
-		</div>
-	</div>
-
-	<div class="row">
 		<div class="col-xs-6 col-xs-offset-3">
 			<table class="table table-bordered table-condensed">
 				<tr>
@@ -57,13 +51,13 @@
 	<div class="text-center">
 		<% if @user == current_user %>
 			<div class="row button-group">
-				<div class="col-xs-4">
+				<div class="col-xs-2 col-xs-offset-3">
 					<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary btn-block' %>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-2">
 						<%= link_to "ブックマーク一覧", bookmarks_user_path(@user), class: 'btn btn-primary btn-block' %>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-2">
 					<% if @user.team.present? %>
 						<%= link_to "所属チーム", team_path(current_user.team), class: 'btn btn-primary btn-block' %>
 					<% else %>
@@ -73,16 +67,12 @@
 			</div>
 
 			<div class="row button-group">
-				<div class="col-xs-4">
+				<div class="col-xs-2 col-xs-offset-4">
 					<%= link_to "いいねした投稿", favorites_user_path(@user), class: 'btn btn-primary btn-block' %>
 				</div>
 
-				<div class="col-xs-4">
+				<div class="col-xs-2">
 					<%= link_to "予定一覧", entries_user_path(@user), class: 'btn btn-primary btn-block' %>
-				</div>
-
-				<div class="col-xs-4">
-					<%= link_to "プロフィール編集", edit_user_path(@user), class: 'btn btn-primary btn-block' %>
 				</div>
 			</div>
 

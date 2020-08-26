@@ -25,11 +25,11 @@
 								</tr>
 								<tr>
 									<th class="info">開始日時</th>
-									<th><%= event.start_date.strftime('%Y-%m-%d-%H-%M') %></th>
+									<th><%= event.start_date.strftime('%Y-%m-%d %H:%M') %></th>
 								</tr>
 								<tr>
 									<th class="info">終了日時</th>
-									<th><%= event.end_date.strftime('%Y-%m-%d-%H-%M') %></th>
+									<th><%= event.end_date.strftime('%Y-%m-%d %H:%M') %></th>
 								</tr>
 							</table>
 						</div>
@@ -61,25 +61,29 @@
 					<% end %>
 
 					<h3 class="text-center">参加者一覧</h3>
-					<table class="table">
-						<thead>
-							<tr class="success">
-								<th class="col-xs-2"></th>
-								<th>性別</th>
-								<th>ポジション</th>
-							</tr>
+					<% if event.entries.blank? %>
+					  <h3 class="text-center">参加者はいません</h3>
+					<% else %>
+					  <table class="table">
+					    <thead>
+						  <tr class="success">
+							<th class="col-xs-2"></th>
+							<th>性別</th>
+							<th>ポジション</th>
+						  </tr>
 						</thead>
 						<tbody>
-							<% event.entries.each do |entry| %>
-								<tr>
-									<td><%= attachment_image_tag(entry.user, :profile_image, fallback: 'sports_soft_tennis_ball.png', size: '50x50') %>
-										<%= link_to entry.user.nickname, user_path(entry.user) %></td>
-									<td><%= entry.user.sex %></td>
-									<td><%= entry.user.position %></td>
-								</tr>
-							<% end %>
+						  <% event.entries.each do |entry| %>
+							<tr>
+							  <td><%= attachment_image_tag(entry.user, :profile_image, fallback: 'sports_soft_tennis_ball.png', size: '50x50') %>
+								  <%= link_to entry.user.nickname, user_path(entry.user) %></td>
+							  <td><%= entry.user.sex %></td>
+							  <td><%= entry.user.position %></td>
+							</tr>
+						  <% end %>
 						</tbody>
-					</table>
+					  </table>
+					<% end %>
 				</div>
 			</div>
 		</div>

@@ -1,25 +1,30 @@
 <div class="container">
 
-<h1 class="text-center"><%= @user.nickname %> のブックマークチーム一覧</h1>
+	<h1 class="text-center"><%= @user.nickname %> のブックマークチーム一覧</h1>
 
-<table class="table table-bordered">
-	<thead>
-		<tr class="success">
-			<th>チーム名</th>
-			<th>活動場所</th>
-			<th>人数</th>
-			<th>メンバー募集</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @user.bookmark_teams.each do |team| %>
-			<tr>
-				<td><%= link_to team.name, team_path(team) %></td>
-				<td><%= team.prefecture_name %><%= team.address %></td>
-				<td><%= team.number_of_people %></td>
-				<td>〇</td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+	<% if @user.bookmarks.blank? %>
+		<h3 class="text-center">現在ブックマークしているチームはありません</h3>
+	<% else %>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr class="success">
+					<th>チーム名</th>
+					<th>活動場所</th>
+					<th>人数</th>
+					<th>メンバー募集</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @user.bookmark_teams.each do |team| %>
+					<tr>
+						<td><%= link_to team.name, team_path(team) %></td>
+						<td><%= team.prefecture_name %><%= team.address %></td>
+						<td><%= team.number_of_people %></td>
+						<td>〇</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
 </div>

@@ -10,7 +10,7 @@
 				<div class="col-xs-offset-2">
 					<div class="form-horizontal">
 						<div class="modal-body">
-							<%= form_with model: event, url: new_event_path do |f| %>
+							<%= form_with model: event do |f| %>
 								<%= f.hidden_field :team_id, :value => params[:team_id] %>
 
 								<div class="form-group">

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: "users/registrations",
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    omniauth_callbacks: 'users/omniauth_callbacks',
   }
 
   resources :users do
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/confirm' => 'users#confirm'
 
   resources :teams, shallow: true do
-    resource :bookmarks, only: %i[create destroy]
+    resource :bookmarks, only: %i(create destroy)
     resource :relationships, only: [:create, :destroy]
     resources :approvals, only: [:create, :destroy]
     get '/matching' => 'relationships#matching'
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :favorites, only: [:create, :destroy]
-  	resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
   resources :notifications, only: [:index]

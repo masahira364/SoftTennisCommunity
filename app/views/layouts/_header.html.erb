@@ -16,6 +16,22 @@
                   <% end %>
               </li>
               <li>
+                  <%= link_to notifications_path(user_id: current_user.id) do %>
+                    <% if unchecked_notifications.any? %>
+                      <span class="fa-stack">
+                        <%= icon "far", "bell", class: "fa-lg fa-stack-2x", style: "1.5em" %>
+                        <%= icon "fas", "circle", class: "n-circle fa-stack-1x" %>
+                        <%= "通知" %>
+                      </span>
+                    <% else %>
+                      <span>
+                        <%= icon "far", "bell", class: "fa-lg", style: "1.5em" %>
+                        <%= "通知" %>
+                      </span>
+                    <% end %>
+                  <% end %>
+              </li>
+              <li>
                   <%= link_to team_search_path do %>
                     <span><%= icon 'fas', 'search-location'%> チーム検索 </span>
                   <% end %>

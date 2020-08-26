@@ -1,28 +1,33 @@
 <div class="container">
 	<h1 class="text-center"><%= @user.nickname %> の予定 </h1>
 
-	<table class="table table-bordered">
-		<thead>
-			<tr class="success">
-				<th>件名</th>
-				<th>開始日時</th>
-				<th>終了日時</th>
-				<th>参加者数</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @events.each do |event| %>
-				<tr>
-					<td><%= link_to event.title, event_path(event) %></td>
-					<td>
-						<%= event.start_day.strftime("%Y-%m-%d %H:%M") %>
-					</td>
-					<td>
-						<%= event.end_day.strftime("%Y-%m-%d %H:%M") %>
-					</td>
-					<td><%= event.entries.count %></td>
+	<% if @user.entries.blank? %>
+		<h3 class="text-center">現在参加する予定はありません</h3>
+	<% else %>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr class="success">
+					<th>件名</th>
+					<th>開始日時</th>
+					<th>終了日時</th>
+					<th>参加者数</th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<% @events.each do |event| %>
+					<tr>
+						<td><%= link_to event.title, event_path(event) %></td>
+						<td>
+							<%= event.start_day.strftime("%Y-%m-%d %H:%M") %>
+						</td>
+						<td>
+							<%= event.end_day.strftime("%Y-%m-%d %H:%M") %>
+						</td>
+						<td><%= event.entries.count %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
 </div>

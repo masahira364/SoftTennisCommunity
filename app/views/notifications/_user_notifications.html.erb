@@ -16,10 +16,8 @@
 					<% when 'follow' then %>
 						<%= 'あなたをフォローしました' %>
 					<% when 'favorite' then %>
-						<% if notification.article.user_id == current_user.id %>
-							<%= link_to 'あなたの投稿', notification.article, style: "font-weight: bold;" %>
+							<%= link_to 'チームの投稿', notification.article, style: "font-weight: bold;" %>
 							<%= "にいいねしました" %>
-						<% end %>
 					<% when 'comment' then %>
 						<% if notification.article.team_id == notification.team_visited.id %>
 							<%= link_to "あなたの投稿",notification.article, style: "font-weight: bold;" %>
