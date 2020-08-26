@@ -6,7 +6,6 @@ class Approval < ApplicationRecord
   def create_notification_approval(current_user)
     notification = current_user.active_notifications.new(
       approval_id: id,
-      event_id: event_id,
       team_visited_id: team_id,
       action: 'approval'
     )

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       if params[:user][:team_id].nil?
         redirect_to user_path(@user)
       # チーム参加承認時
-      elsif !params[:user][:team_id].nil?
+      elsif params[:user][:team_id].present?
         # チーム脱退時の処理
         if @user.team_id.nil?
           @approval = Notification.new(visitor_id: @user.id,

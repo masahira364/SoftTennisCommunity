@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="text-center">チームの予定</h1>
+    <h1 class="text-center"><%= @team.name %>の予定</h1>
 
     <div class="button-group">
         <%= link_to "チームに戻る", team_path(@team), class: "btn btn-primary" %>
@@ -9,14 +9,14 @@
     <% if @team.id == current_user.team_id %>
         <!-- 新規登録フォーム -->
         <%= render 'form_new', event: @event %>
-
-         <div id="modalEvent">
-            <!-- 予定詳細 -->
-            <%= render 'show', events: @events %>
-        </div>
-        <!-- 予定参加者 -->
-        <%= render 'entry_users', events: @events %>
     <% end %>
+
+    <!-- 予定詳細 -->
+     <div id="modalEvent">
+        <%= render 'show', events: @events %>
+    </div>
+    <!-- 予定参加者 -->
+    <%= render 'entry_users', events: @events %>
 </div>
 
 <script>

@@ -9,6 +9,9 @@
 	<!-- フォローボタン -->
 	<div class="row button-group">
 		<div class="col-xs-4">
+			<br>
+			<br>
+			<br>
 			<% if @user.team_id == @team.id %>
 				<%= form_with model:current_user, url: user_path(current_user, team_id: @team.id) do |f| %>
 					<%= f.hidden_field :team_id, :value => nil %>
@@ -20,12 +23,14 @@
 				</div>
 			<% end %>
 		</div>
-	
-		<div class="col-xs-3 col-xs-offset-5">
-			<div class="team-sns">
-				<%= render 'sns', team: @team %>
+		
+		<% if @team.twitter.present? or @team.facebook.present? or @team.instagram.present? %>
+			<div class="col-xs-3 col-xs-offset-5">
+				<div class="team-sns">
+					<%= render 'sns', team: @team %>
+				</div>
 			</div>
-		</div>
+		<% end %>
 	</div>
 
 

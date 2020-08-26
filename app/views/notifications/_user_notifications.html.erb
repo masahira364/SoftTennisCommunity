@@ -19,17 +19,17 @@
 							<%= link_to 'チームの投稿', notification.article, style: "font-weight: bold;" %>
 							<%= "にいいねしました" %>
 					<% when 'comment' then %>
-						<% if notification.article.team_id == notification.team_visited.id %>
+						<% if notification.comment.article.team_id == notification.team_visited.id %>
 							<%= link_to "あなたの投稿",notification.article, style: "font-weight: bold;" %>
 							<%= 'にコメントしました' %>
 						<% else %>
 							<span>
-								<%= link_to notification.article.team.nickname + 'さんの投稿', article_path(notification.article) %>
+								<%= link_to notification.comment.article.team.name + 'さんの投稿', article_path(notification.comment.article) %>
 								<%= 'にコメントしました' %>
 							</span>
 						<% end %>
 						<p class="text-muted mb-0">
-							<%= notification.comment %>
+							<%= notification.comment.comment %>
 						</p>
 					<% when 'article' then %>
 						<%= link_to "新しいチーム日記",notification.article, style: "font-weight: bold;" %>
@@ -41,6 +41,15 @@
 							<%= notification.event.start_date.strftime("%Y-%m-%d") %>
 							<%= notification.event.title %>
 						</p>
+					<% when 'approval' then %>
+					<!-- チームか予定への参加申請か判定 -->
+						<% if notification.event_id.nil? %>
+							<%= link_to 'チームへの参加', approvals_team_path(id: notification.team_visited), style: "font-weight: bold;" %>
+							<%= "を希望しています" %>
+						<% else %>
+							<%= link_to '予定への参加', events_path(team_id: params[:team_id]), style: "font-weight: bold;" %>
+							<%= "を希望しています" %>
+						<% end %>
 				<% end %>
 				<div class="small text-muted text-right">
 	    			<%= time_ago_in_words(notification.created_at).upcase %><%= '前' %>

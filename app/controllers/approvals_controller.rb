@@ -1,12 +1,17 @@
 class ApprovalsController < ApplicationController
   def create
-    if params[:approval][:event_id] = nil
-      approval = current_user.approvals.build(team_id: params[:team_id], event_id: params[:approval][:event_id], action: params[:approval][:action])
+    @event_id = params[:approval][:event_id]
+    unless params[:approval][:event_id] = nil
+      approval = current_user.approvals.build(team_id: params[:team_id], 
+                                              event_id: @event_id)
+      notification = Notification.new(visitor_id: current_user.id, team_visited_id: params[:team_id],
+                                        event_id: @event_id, action: 'approval')
+      notification.save!
     else
       approval = current_user.approvals.build(team_id: params[:team_id])
+      approval.create_notification_approval(current_user)
     end
     approval.save!
-    approval.create_notification_approval(current_user)
     redirect_to request.referer
   end
 

@@ -11,14 +11,12 @@
 		<%= form_with model:event.team.approvals, url: approval_path(event.team_id), method: :delete do |f| %>
 			<%= f.hidden_field :team_id, :value => event.team_id %>
 			<%= f.hidden_field :event_id, :value => event.id %>
-			<%= f.hidden_field :action, :value => 'entry' %>
 			<%= f.submit "申請の取り消し", class: "btn btn-danger" %>
 		<% end %>
 	<% else %>
 		<%= form_with model:event.team.approvals, url: team_approvals_path(event.team_id) do |f| %>
 			<%= f.hidden_field :team_id, :value => event.team_id %>
 			<%= f.hidden_field :event_id, :value => event.id %>
-			<%= f.hidden_field :action, :value => 'entry' %>
 			<%= f.submit "予定参加の申請", class: "btn btn-primary" %>
 		<% end %>
 	<% end %>
