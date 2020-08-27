@@ -60,6 +60,12 @@
 				</th>
 			</tr>
 			<tr>
+				<th><%= f.label :number_of_people, "人数" %></th>
+				<th>
+					<%= f.number_field :number_of_people, class: 'form-control' %>
+				</th>
+			</tr>
+			<tr>
 				<th><%= f.label :annual_fee, "年会費" %></th>
 				<th>
 					<%= f.text_field :annual_fee, class: 'form-control' %>

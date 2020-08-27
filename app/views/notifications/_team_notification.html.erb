@@ -4,6 +4,7 @@
 			<% team_notifications.each do |notification| %>
 				<% if notification.visitor.present? %>
 					<span>
+						<%= attachment_image_tag(notification.visitor, :profile_image, fallback:  'sports_soft_tennis_ball.png', size: '20x20', class: "img-circle") %>
 						<%= link_to notification.visitor.nickname, user_path(notification.visitor) %>さんが
 					</span>
 				<% elsif notification.team_visitor.present? %>
@@ -26,7 +27,7 @@
 							<%= link_to 'チームの予定', events_path(team_id: params[:team_id]), style: "font-weight: bold;" %>
 							<%= "に参加しました" %>
 
-						<p class="text-muted mb-0">
+						<p class="text-muted text-center mb-0">
 							<%= notification.event.start_date.strftime("%Y-%m-%d") %>
 							<%= notification.event.title %>
 						</p>
@@ -40,7 +41,7 @@
 								<%= 'にコメントしました' %>
 							</span>
 						<% end %>
-						<p class="text-muted mb-0">
+						<p class="text-muted text-center mb-0">
 							<%= notification.comment.comment %>
 						</p>
 					<% when 'article' then %>
@@ -49,7 +50,7 @@
 					<% when 'event' then %>
 						<%= link_to '新しい予定', notification.event, style: "font-weight: bold;" %>
 						<%= 'を作成しました' %>
-						<p class="text-muted mb-0">
+						<p class="text-muted text-center mb-0">
 							<%= notification.event.start_date.strftime("%Y-%m-%d") %>
 							<%= notification.event.title %>
 						</p>

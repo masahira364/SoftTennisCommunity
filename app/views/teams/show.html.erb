@@ -60,16 +60,7 @@
 			</tr>
 			<tr>
 				<th>人数</th>
-				<th>男性:<%= @man %>人, 女性:<%= @woman %>人</th>
-			</tr>
-			<tr>
-				<th>平均年齢</th>
-				<th><% if @team.users.blank? %>
-						0
-					<% else %>
-						<%= @team.users.average(:age) %>歳
-					<% end %>
-				</th>
+				<th><%= @team.number_of_people %>人</th>
 			</tr>
 			<tr>
 				<th>年会費</th>
@@ -90,7 +81,7 @@
 			<% if @team.homepage_url.present? %>
 				<tr>
 					<th>ホームページ</th>
-					<th><%= @team.homepage_url %></th>
+					<th><a href="<%= @team.homepage_url %>"><%= @team.homepage_url %></a></th>
 				</tr>
 			<% end %>
 		</tbody>

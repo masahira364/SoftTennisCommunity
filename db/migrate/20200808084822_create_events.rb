@@ -5,7 +5,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.text :description
       t.datetime :start_date
       t.datetime :end_date
-      t.references :team, foreign_key: true
+      t.integer :team_id, null: false
 
       t.timestamps
     end

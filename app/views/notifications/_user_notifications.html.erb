@@ -28,7 +28,7 @@
 								<%= 'にコメントしました' %>
 							</span>
 						<% end %>
-						<p class="text-muted mb-0">
+						<p class="text-muted text-center mb-0">
 							<%= notification.comment.comment %>
 						</p>
 					<% when 'article' then %>
@@ -37,7 +37,7 @@
 					<% when 'event' then %>
 						<%= link_to '新しい予定', notification.event, style: "font-weight: bold;" %>
 						<%= 'を作成しました' %>
-						<p class="text-muted mb-0">
+						<p class="text-muted text-center mb-0">
 							<%= notification.event.start_date.strftime("%Y-%m-%d") %>
 							<%= notification.event.title %>
 						</p>

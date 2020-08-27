@@ -8,7 +8,7 @@
 <%= render "search_form" %>
 
 <div class="button-group text-right">
-	<%= link_to "新規チーム作成", new_team_path, class: "btn btn-primary" %>
+	<%= link_to "新規チーム作成", new_team_path, class: "btn btn-success" %>
 </div>
 
 <table class="table table-bordered">
@@ -26,9 +26,9 @@
 			<tr>
 				<td><%= link_to team.name, team_path(team) %></td>
 				<td><%= team.prefecture_name %><%= team.address %></td>
-				<td><%= team.users.count %>人</td>
+				<td><%= team.number_of_people %>人</td>
 				<td><%= team.matchers.count %></td>
-				<td>〇</td>
+				<td><%= team.members_wanted ? "〇" : "×" %></td>
 			</tr>
 		<% end %>
 	</tbody>
@@ -41,7 +41,7 @@
 <%= render "search_form" %>
 
 <div class="button-group text-right">
-	<%= link_to "新規チーム作成", new_team_path, class: "btn btn-primary" %>
+	<%= link_to "新規チーム作成", new_team_path, class: "btn btn-success" %>
 </div>
 
 <table class="table table-bordered">
@@ -59,7 +59,7 @@
 			<tr>
 				<td><%= link_to team.name, team_path(team) %></td>
 				<td><%= team.prefecture_name %><%= team.address %></td>
-				<td><%= team.users.count %>人</td>
+				<td><%= team.number_of_people %>人</td>
 				<td><%= team.matchers.count %></td>
 				<td><%= team.members_wanted ? "〇" : "×" %></td>
 			</tr>

@@ -8,7 +8,7 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.integer :postal_code, null: false
       t.string :address, null: false
       t.string :practice_day
-      t.string :number_of_people
+      t.integer :number_of_people
       t.string :annual_fee, null: false
       t.string :entry_fee, null: false
       t.boolean :members_wanted, null: false

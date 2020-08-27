@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.integer "user_id", null: false
     t.integer "team_id", null: false
     t.integer "event_id"
-    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,9 +35,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_bookmarks_on_team_id"
     t.index ["user_id", "team_id"], name: "index_bookmarks_on_user_id_and_team_id", unique: true
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -54,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.integer "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "event_id"], name: "index_entries_on_user_id_and_event_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
@@ -61,10 +59,9 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.text "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "team_id"
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_events_on_team_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -72,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.integer "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "article_id"], name: "index_favorites_on_user_id_and_article_id", unique: true
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -105,18 +103,12 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
-  create_table "prefectures", force: :cascade do |t|
-    t.string "name"
-    t.integer "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -154,7 +146,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_075607) do
     t.integer "postal_code", null: false
     t.string "address", null: false
     t.string "practice_day"
-    t.string "number_of_people"
+    t.integer "number_of_people"
     t.string "annual_fee", null: false
     t.string "entry_fee", null: false
     t.boolean "members_wanted", null: false
