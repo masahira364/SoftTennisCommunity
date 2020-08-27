@@ -12,7 +12,7 @@ class ApprovalsController < ApplicationController
       approval.create_notification_approval(current_user)
     end
     approval.save!
-    redirect_to request.referer
+    redirect_to request.referer, notice: "チーム参加の申請をしました"
   end
 
   def destroy
@@ -21,6 +21,6 @@ class ApprovalsController < ApplicationController
     else
       Approval.find(params[:id]).destroy!
     end
-    redirect_to request.referer
+    redirect_to request.referer, alert: "チーム参加の申請を取り消しました"
   end
 end

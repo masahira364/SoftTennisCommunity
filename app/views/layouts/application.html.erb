@@ -13,9 +13,12 @@
   <body data-turbolinks="false">
     <div id="wrapper">
       <%= render 'layouts/header' %>
-        
-        <%= yield %>
-      
+
+      <% if notice or alert %>
+        <%= render 'layouts/flash' %>
+      <% end %>
+
+      <%= yield %>
 
       <%= render 'layouts/footer' %>
 

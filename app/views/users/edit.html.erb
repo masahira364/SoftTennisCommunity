@@ -1,14 +1,4 @@
-<% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@user.errors.count, "error") %> prohibited this obj from being saved:</h3>
-
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-<% end %>
+<%= render 'layouts/error_messages', object: @user %>
 
 <div class="text-center">
 	<h1>プロフィール編集</h1>

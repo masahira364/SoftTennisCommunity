@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     if @event.save
       @event.create_notification_event(current_user)
-      redirect_to events_path(team_id: params[:event][:team_id])
+      redirect_to events_path(team_id: params[:event][:team_id]), notice: "予定を作成しました"
     else
       render :new
        end
@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to events_path(team_id: @event.team_id)
+      redirect_to events_path(team_id: @event.team_id), notice: "予定を更新しました"
     else
       render :edit
      end
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
     @team = Team.find_by(id: params[:team_id])
     @event = Event.find(params[:id])
     if @event.destroy
-      redirect_to events_path(team_id: @event.team_id)
+      redirect_to events_path(team_id: @event.team_id), alert: "予定を削除しました"
     end
   end
 

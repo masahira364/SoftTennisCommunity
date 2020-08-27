@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
     @article.team_id = @team.id
     if @article.save
       @article.create_notification_article(current_user)
-      redirect_to article_path(@article)
+      redirect_to article_path(@article), notice: "チーム日記を投稿しました"
     else
       render :new
     end
@@ -55,7 +55,7 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-      redirect_to article_path(@article)
+      redirect_to article_path(@article), notice: "チーム日記を更新しました"
     else
       render :edit
     end
@@ -64,7 +64,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     if @article.destroy
-      redirect_to articles_path
+      redirect_to articles_path, alert: "チーム日記を削除しました"
     else
       render :edit
     end

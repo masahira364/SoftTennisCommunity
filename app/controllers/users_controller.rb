@@ -14,23 +14,23 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: '退会しました。ご利用ありがとうございました。'
   end
 
   def update
     if @user.update(user_params)
       # プロフィール更新時
-      if params[:user][:team_id].nil?
-        redirect_to user_path(@user)
+      if params[:user][:team_id] == nil
+        redirect_to user_path(@user), notice: "プロフィールを更新しました"
       # チーム参加承認時
-      elsif params[:user][:team_id].present?
+      elsif params[:user][:team_id] != nil
         # チーム脱退時の処理
         if @user.team_id.nil?
           @approval = Notification.new(visitor_id: @user.id,
                                        team_visited_id: params[:team_id],
                                        action: 'withdrawal')
           @approval.save
-          redirect_to request.referer
+          redirect_to request.referer, alert: "チームを脱退しました"
         else
           # 承認申請を削除
           @approval = Approval.find_by(team_id: params[:user][:team_id],
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
           @approval.destroy
           # 参加の通知を作成
           @user.create_notification_user(@user)
-          redirect_to request.referer
+          redirect_to request.referer, notice: "#{@user.nickname}さんがチームに参加しました"
         end
       end
     else
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), alert: "他の会員の情報編集・削除は禁止です"
     end
   end
 

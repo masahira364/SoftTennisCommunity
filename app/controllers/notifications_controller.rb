@@ -1,10 +1,12 @@
 class NotificationsController < ApplicationController
   def index
+    # チームの通知一覧
     if params[:team_id]
       @team = Team.find(params[:team_id])
       @team_notifications = Notification.where(team_visited_id: @team.id).
         page(params[:page]).per(20)
     else
+      # 個人の通知一覧
       @notifications = Notification.where(visited_id: current_user.id).
         or(Notification.where(team_visited_id: current_user.team_id)).
         where.not(visitor_id: current_user.id).

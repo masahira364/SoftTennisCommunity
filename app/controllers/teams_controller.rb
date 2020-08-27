@@ -24,8 +24,6 @@ class TeamsController < ApplicationController
     unless @user.team_id.nil?
       @current_team = Team.find(@user.team_id)
     end
-    @man = @team.users.where(sex: "男性").count
-    @woman = @team.users.where(sex: "女性").count
   end
 
   def new
@@ -37,7 +35,7 @@ class TeamsController < ApplicationController
     @user = current_user
     if @team.save
       @user.update(team_id: @team.id)
-      redirect_to teams_path
+      redirect_to teams_path, notice: "#{@team.name}を立ち上げました"
     else
       render :new
     end
@@ -48,7 +46,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "チームの情報を更新しました"
     else
       render :edit
     end
