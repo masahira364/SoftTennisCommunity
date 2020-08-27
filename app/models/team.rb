@@ -5,8 +5,19 @@ class Team < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :approvals, dependent: :destroy
 
-  has_many :active_team_notifications, class_name: "Notification", foreign_key: "team_visitor_id", dependent: :destroy
-  has_many :passive_team_notifications, class_name: "Notification", foreign_key: "team_visited_id", dependent: :destroy
+  has_many :active_team_notifications, class_name: "Notification", 
+            foreign_key: "team_visitor_id", dependent: :destroy
+  has_many :passive_team_notifications, class_name: "Notification", 
+            foreign_key: "team_visited_id", dependent: :destroy
+
+  validates :name, presence: true
+  validates :slogan, presence: true
+  validates :prefecture_code, presence: true
+  validates :address, presence: true
+  validates :prefecture_code, presence: true
+  validates :annual_fee, presence: true
+  validates :entry_fee, presence: true
+  validates :members_wanted, presence: true
 
   attachment :image
 

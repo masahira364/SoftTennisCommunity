@@ -4,6 +4,11 @@ class Event < ApplicationRecord
   has_many :entry_users, through: :entries, source: :user
   has_many :notifications, dependent: :destroy
 
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+
   # 参加
   def entry_by?(user)
     entries.where(user_id: user.id).exists?

@@ -6,6 +6,9 @@ class Article < ApplicationRecord
 
   attachment :image
 
+  validates :title, presence: true
+  validates :body, presence: true
+
   acts_as_taggable
 
   # いいね

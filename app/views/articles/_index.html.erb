@@ -60,7 +60,9 @@
 	</div>
 
 	<div class="col-xs-9">
-		<h4 class="text-right"><%= link_to "新規投稿", new_article_path, class: "btn btn-success" %></h4>
+		<% if current_user.team_id.present? %>
+			<h4 class="text-right"><%= link_to "新規投稿", new_article_path, class: "btn btn-success" %></h4>
+		<% end %>
 		<table class="table table-bordered">
 			<thead>
 				<tr class="success">
