@@ -13,7 +13,7 @@
 			<br>
 			<br>
 			<% if @user.team_id == @team.id %>
-				<%= form_with model:current_user, url: user_path(current_user, team_id: @team.id), remote: true do |f| %>
+				<%= form_with model:current_user, url: user_path(current_user, team_id: @team.id) do |f| %>
 					<%= f.hidden_field :team_id, :value => nil %>
 					<%= f.submit "チームを脱退する", class: "btn btn-danger" %>
 				<% end %>

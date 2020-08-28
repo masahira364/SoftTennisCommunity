@@ -7,7 +7,7 @@
 			  </button>
 		      <h3>入力内容に<%= object.errors.count %> 件のエラーがあります。</h3>
 
-		      <ul>
+		      <ul style="list-style: none;">
 		      <% object.errors.full_messages.each do |message| %>
 		        <li><%= message %></li>
 		      <% end %>

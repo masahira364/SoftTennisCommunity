@@ -1,3 +1,4 @@
+<%= render 'layouts/error_messages', object: @article %>
 <div class="container">
 	<div class="text-center">
 		<h1><%= @article.title %></h1>
@@ -23,7 +24,7 @@
 
 		<div class="row tag-group">
 			<span>タグ一覧：</span>
-			<%= render 'tag_list', tag_list: @article.tag_list %>
+			<%= render 'articles/tag_list', tag_list: @article.tag_list %>
 		</div>
 
 		<div class="row button-group">
@@ -31,7 +32,7 @@
 				<div class="col-xs-1 col-xs-offset-5">
 					<!-- いいねボタン -->
 					<div class="favorite_<%= @article.id %>">
-						<%= render 'favorite', article: @article %>
+						<%= render 'articles/favorite', article: @article %>
 					</div>
 				</div>
 				<div class="col-xs-1">
@@ -109,6 +110,7 @@
 	    <div class="modal-dialog modal-nm">
 	        <div class="modal-content">
 	            <div class="modal-header">
+	            	<%= render 'layouts/error_messages', object: @comment %>
 	            	<h3 class="text-center">コメント投稿</h3>
 	            </div>
 

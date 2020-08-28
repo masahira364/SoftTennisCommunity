@@ -6,7 +6,7 @@ $ ->
 	$('#team_postcode').jpostal({
 		postcode : ["#team_postcode"],
 		address  : {
-						"#team_prefecture_name" : "%3",
+						"#team_prefecture_code" : "%3",
 						"#team_address"    : "%4%5%6%7",
 		}
 	})

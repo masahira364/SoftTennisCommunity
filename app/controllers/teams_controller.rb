@@ -86,7 +86,7 @@ class TeamsController < ApplicationController
       :image,
       :slogan,
       :postal_code,
-      :prefecture_name,
+      :prefecture_code,
       :address,
       :practice_day,
       :number_of_people,

@@ -31,6 +31,19 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      team:
+        name: 名前
+        slogan: スローガン
+        postal_code: 郵便番号
+        prefecture_code: 都道府県
+        address: 住所
+        annual_fee: 年会費
+        entry_fee: 参加費
+      article:
+        title: タイトル
+        body: 投稿内容
+      comment:
+        comment: コメント
     models:
       user: 会員
   devise:

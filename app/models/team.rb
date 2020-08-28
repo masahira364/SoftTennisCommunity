@@ -12,7 +12,7 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
   validates :slogan, presence: true
-  validates :prefecture_code, presence: true
+  validates :postal_code, presence: true
   validates :address, presence: true
   validates :prefecture_code, presence: true
   validates :annual_fee, presence: true
