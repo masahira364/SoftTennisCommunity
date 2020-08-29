@@ -37,15 +37,17 @@
   - カレンダー
   - タグ付け
   - 検索
-  - メール
+  - グループ
   - 画像アップロード
   - ブックマーク
+  - フォロー
+  - ランキング
+  - いいね
+  - 通知機能
   - コメント
   - 非同期通信
   - クリッカブルマップ
   - 地図表示
-  - テスト
-  - デバッグ
 
 - UI Flows
 ![SoftTennisCommunity UI_Flows](https://user-images.githubusercontent.com/64352287/89249365-f6852180-d64c-11ea-9233-e40144d8ffd8.png)
