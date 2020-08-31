@@ -60,7 +60,7 @@
 							<%= link_to 'チームへの参加', approvals_team_path(id: notification.team_visited), style: "font-weight: bold;" %>
 							<%= "を希望しています" %>
 						<% else %>
-							<%= link_to '予定への参加', events_path(team_id: params[:team_id]), style: "font-weight: bold;" %>
+							<%= link_to '予定への参加', approvals_team_path(id: notification.team_visited), style: "font-weight: bold;" %>
 							<%= "を希望しています" %>
 						<% end %>
 

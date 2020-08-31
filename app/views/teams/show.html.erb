@@ -102,9 +102,11 @@
 		</div>
 	</div>
 	<div class="row button-group">
-		<div class="col-xs-3">
-			<%= link_to "通知", notifications_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
-		</div>
+		<% if @user.team_id == @team.id %>
+			<div class="col-xs-3">
+				<%= link_to "通知", notifications_path(team_id: @team.id), class: "btn btn-primary btn-block" %>
+			</div>
+		<% end %>
 
 		<div class="col-xs-3">
 			<% if current_user.team_id == @team.id %>
