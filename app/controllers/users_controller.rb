@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     :bookmarks, :favorites, :entries, :confirm,
   ]
 
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :destroy]
 
   def show
   end
