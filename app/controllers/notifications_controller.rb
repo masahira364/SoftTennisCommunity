@@ -8,7 +8,10 @@ class NotificationsController < ApplicationController
     else
       # 個人の通知一覧
       @notifications = Notification.where(visited_id: current_user.id).
-                       or(Notification.where(team_visited_id: current_user.team_id)).
+                       or(Notification.where(team_visited_id: current_user.team_id, action: "team")).
+                       or(Notification.where(team_visited_id: current_user.team_id, action: "withdrawal")).
+                       or(Notification.where(team_visited_id: current_user.team_id, action: "article")).
+                       or(Notification.where(team_visited_id: current_user.team_id, action: "event")).
                        where.not(visitor_id: current_user.id).
                        page(params[:page]).per(20)
       @notifications.where(checked: false).each do |notification|
