@@ -10,25 +10,27 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+            <li><p>ログイン：<%= current_user.nickname %>さん</p></li>
               <li>
-                  <%= link_to user_path(current_user) do %>
-                    <span><%= icon 'far', 'address-book'%> マイページ </span>
-                  <% end %>
-              </li>
-              <li>
-                  <%= link_to notifications_path(user_id: current_user.id) do %>
+                  <%= link_to notifications_path(user_id: current_user.id), style: "padding-right: 0;" do %>
+                    <!-- 未確認の通知があるか判定 -->
                     <% if unchecked_notifications.any? %>
                       <span class="fa-stack">
-                        <%= icon "far", "bell", class: "fa-lg fa-stack-2x", style: "1.5em" %>
-                        <%= icon "fas", "circle", class: "n-circle fa-stack-1x" %>
-                        <%= "通知" %>
+                        <%= icon "far", "bell", class: "fa-stack-2x fa-lg", style: "font-size :1.5em;" %>
+                        <%= icon "fas", "circle", class: "n-circle fa-stack-1x", style: "font-size: 15px;" %>
                       </span>
                     <% else %>
                       <span>
-                        <%= icon "far", "bell", class: "fa-lg", style: "1.5em" %>
-                        <%= "通知" %>
+                        <%= icon "far", "bell", class: "fa-lg", style: "font-size :1.5em;" %>
                       </span>
                     <% end %>
+                    <p class="notification">通知</p>
+                  <% end %>
+              </li>
+              <li></li>
+              <li>
+                  <%= link_to user_path(current_user) do %>
+                    <span><%= icon 'far', 'address-book'%> マイページ </span>
                   <% end %>
               </li>
               <li>

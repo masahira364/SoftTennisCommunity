@@ -80,7 +80,7 @@ html {
 }
 
 .navbar-right{
-  margin-right: 50px;
+  margin-right: 20px;
   margin-top: 20px;
 }
 
@@ -88,11 +88,18 @@ html {
   margin-bottom: 30px;
 }
 
-.nav a{
+.nav a, p{
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 50px;
   text-decoration: none;
+}
+
+.notification {
+  float: right;
+  line-height: 20px;
+  padding-left: 5px;
+  padding-right: 15px;
 }
 
 .sns-link{
@@ -120,4 +127,15 @@ h1{
 
 #error_explanation{
   margin-top: 80px;
+}
+
+.n-circle{
+  position: absolute;
+  padding-left: 2rem;
+  padding-top: 0rem;
+  color: #efa04c;
+}
+
+.fa-stack i{
+  font-size: 20px;
 }
