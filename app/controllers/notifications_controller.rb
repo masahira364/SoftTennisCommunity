@@ -14,6 +14,7 @@ class NotificationsController < ApplicationController
                        or(Notification.where(team_visited_id: current_user.team_id, action: "event")).
                        where.not(visitor_id: current_user.id).
                        page(params[:page]).per(20)
+      # 未チェックのものをチェック済に更新する
       @notifications.where(checked: false).each do |notification|
         notification.update_attributes(checked: true)
       end
