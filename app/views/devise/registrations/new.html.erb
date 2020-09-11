@@ -4,13 +4,6 @@
   <h1>新規登録</h1>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="sns-link">
-    <h2>SNSでの登録はこちら</h2>
-    <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-      <%= icon "fab", "google" %>
-    <% end %>
-  </div>
-
 <div class="row">
   <div class="col-xs-8 col-xs-offset-4">
 
