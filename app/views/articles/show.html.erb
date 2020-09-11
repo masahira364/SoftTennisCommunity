@@ -27,6 +27,8 @@
 			<%= render 'articles/tag_list', tag_list: @article.tag_list %>
 		</div>
 
+		<hr>
+
 		<div class="row button-group">
 			<div class="article-icon">
 				<div class="col-xs-1 col-xs-offset-5">
@@ -39,6 +41,12 @@
 					<a data-toggle="modal" data-target="#modalComment"><%= icon "far", "comment-dots"%></a>
 					<%= @article.comments.count %>
 				</div>
+			</div>
+		</div>
+
+		<div class="row button-group">
+			<div>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#CommentPost">コメントする</button>
 			</div>
 		</div>
 
@@ -95,9 +103,6 @@
 				</div>
 
 				<div class="modal-footer">
-					<div class="col-xs-3 col-xs-offset-3">
-						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#CommentPost">コメントする</button>
-					</div>
 					<div class="col-xs-3">
 						<button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
 					</div>
