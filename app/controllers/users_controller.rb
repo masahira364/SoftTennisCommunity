@@ -18,6 +18,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    if current_user.team_id.present?
+      @team = Team.find(current_user.team_id)
+    end
     if @user.update(user_params)
       # プロフィール更新時
       if params[:user][:team_id] == nil
@@ -30,7 +33,11 @@ class UsersController < ApplicationController
                                        team_visited_id: params[:team_id],
                                        action: 'withdrawal')
           @approval.save
-          redirect_to request.referer, alert: "チームを脱退しました"
+          # チームのメンバーがだれもいなければチーム削除
+          if @team.users.empty?
+            @team.destroy
+          end
+          redirect_to user_path(current_user), alert: "チームを脱退しました"
         else
           # 承認申請を削除
           @approval = Approval.find_by(team_id: params[:user][:team_id],
