@@ -8,10 +8,15 @@ class Event < ApplicationRecord
   validates :description, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validate :end_date_before_start_date
 
   # 参加
   def entry_by?(user)
     entries.where(user_id: user.id).exists?
+  end
+
+  def end_date_before_start_date
+    errors.add(:end_date, "は開始日時以降にしてください") if end_date < start_date
   end
 
   # 通知機能

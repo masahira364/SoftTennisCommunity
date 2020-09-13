@@ -21,8 +21,8 @@ class EventsController < ApplicationController
       @event.create_notification_event(current_user)
       redirect_to events_path(team_id: params[:event][:team_id]), notice: "予定を作成しました"
     else
-      render :new
-       end
+      render :error
+    end
   end
 
   def edit

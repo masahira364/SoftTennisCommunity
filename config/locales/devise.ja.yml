@@ -44,6 +44,11 @@ ja:
         body: 投稿内容
       comment:
         comment: コメント
+      event:
+        title: 件名
+        description: 詳細
+        start_date: 開始日時
+        end_date: 終了日時
     models:
       user: 会員
   devise:

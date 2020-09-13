@@ -1,7 +1,7 @@
 <!-- クリッカブルマップからのパラメーター有無で分岐 -->
 <% if params[:prefecture_code] %>
 
-<h1 class="text-center"><%= prefecture.name %> のチーム一覧</h1>
+<h1 class="page-title text-center"><%= prefecture.name %> のチーム一覧</h1>
 
 	<% if prefecture_teams.blank? %>
 		<h2 class="text-center">この都道府県にはチームがありません。</h2>
@@ -34,7 +34,7 @@
 <% elsif params[:q] %>
 	<div class="row">
 		<div class="col-xs-3">
-			<h1 class="text-left">指定条件</h1>
+			<h1 class="page-title text-left">指定条件</h1>
 			<div class="text-left">
 				<% if params[:q][:prefecture_code_eq].empty? %>
 					<p>都道府県: 指定なし</p>
@@ -57,9 +57,9 @@
 		</div>
 		<div class="col-xs-9">
 			<% if teams.blank? %>
-				<h1 class="text-center">指定条件のチームはありませんでした。</h1>
+				<h1 class="page-title text-center">指定条件のチームはありませんでした。</h1>
 			<% else %>
-				<h1 class="text-center">検索結果</h1>
+				<h1 class="page-title text-center">検索結果</h1>
 
 				<table class="table table-bordered">
 					<thead>
@@ -87,7 +87,7 @@
 
 <% else %>
 
-<h1 class="text-center">全国のチーム一覧</h1>
+<h1 class="page-title text-center">全国のチーム一覧</h1>
 	<% if teams.blank? %>
 		<h2 class="text-center">チームがありません。</h2>
 	<% else %>

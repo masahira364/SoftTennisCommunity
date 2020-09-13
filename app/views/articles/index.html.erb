@@ -3,15 +3,15 @@
 	
 	<!-- チームの投稿一覧 -->
 	<% if params[:team_id] %>
-		<h1 class="text-center"><%= @team.name %>　投稿一覧</h1>
+		<h1 class="page-title text-center"><%= @team.name %>　投稿一覧</h1>
 		<%= render 'index', articles: @articles %>
     <!-- タグの名前での検索 -->
 	<% elsif params[:tag_name] %>
-		<h1 class="text-center"><%= @tag %> タグの投稿一覧</h1>
+		<h1 class="page-title text-center"><%= @tag %> タグの投稿一覧</h1>
 		<%= render 'index', articles: @articles %>
     <!-- 全一覧 -->
 	<% else %>
-		<h1 class="text-center">チーム日記　投稿一覧</h1>
+		<h1 class="page-title text-center">チーム日記　投稿一覧</h1>
 		<%= render 'index', articles: @articles %>
 	<% end %>
 </div>

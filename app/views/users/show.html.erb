@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="text-center">
-			<h1><%= @user.nickname %> さんのページ</h1>
+			<h1 class="page-title"><%= @user.nickname %> さんのページ</h1>
 
 			<%= attachment_image_tag(@user, :profile_image, fallback:  'sports_soft_tennis_ball.png', size: '300x300', class: "img-circle") %>
 		</div>
