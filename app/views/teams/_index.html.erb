@@ -1,0 +1,117 @@
+<!-- クリッカブルマップからのパラメーター有無で分岐 -->
+<% if params[:prefecture_code] %>
+
+<h1 class="text-center"><%= prefecture.name %> のチーム一覧</h1>
+
+	<% if prefecture_teams.blank? %>
+		<h2 class="text-center">この都道府県にはチームがありません。</h2>
+	<% else %>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr class="success">
+					<th>チーム名</th>
+					<th>活動場所</th>
+					<th>人数</th>
+					<th>交流チーム数</th>
+					<th>メンバー募集</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% prefecture_teams.each do |team| %>
+					<tr>
+						<td><%= link_to team.name, team_path(team) %></td>
+						<td><%= team.prefecture_name %><%= team.address %></td>
+						<td><%= team.number_of_people %>人</td>
+						<td><%= team.matchers.count %></td>
+						<td><%= team.members_wanted ? "〇" : "×" %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+
+<% elsif params[:q] %>
+	<div class="row">
+		<div class="col-xs-3">
+			<h1 class="text-left">指定条件</h1>
+			<div class="text-left">
+				<% if params[:q][:prefecture_code_eq].empty? %>
+					<p>都道府県: 指定なし</p>
+				<% else %>
+					<p>都道府県: <%= search_prefecture.name %></p>
+				<% end %>
+
+				<% if params[:q][:number_of_people_gteq].empty? %>
+					<p>人数: 指定なし</p>
+				<% else %>
+					<p>人数: <%= params[:q][:number_of_people_gteq] %>人以上</p>
+				<% end %>
+
+				<% if params[:q][:name_cont].empty? %>
+					<p>チーム名: 指定なし</p>
+				<% else %>
+					<p>チーム名: <%= params[:q][:name_cont] %></p>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-xs-9">
+			<% if teams.blank? %>
+				<h1 class="text-center">指定条件のチームはありませんでした。</h1>
+			<% else %>
+				<h1 class="text-center">検索結果</h1>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr class="success">
+							<th>チーム名</th>
+							<th>活動場所</th>
+							<th>人数</th>
+							<th>メンバー募集</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @teams.each do |team| %>
+							<tr>
+								<td><%= link_to team.name, team_path(team) %></td>
+								<td><%= team.prefecture_name %><%= team.address %></td>
+								<td><%= team.number_of_people %></td>
+								<td><%= team.members_wanted ? "〇" : "×" %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+		</div>
+	</div>
+
+<% else %>
+
+<h1 class="text-center">全国のチーム一覧</h1>
+	<% if teams.blank? %>
+		<h2 class="text-center">チームがありません。</h2>
+	<% else %>
+		<table class="table table-bordered">
+			<thead>
+				<tr class="success">
+					<th>チーム名</th>
+					<th>活動場所</th>
+					<th>人数</th>
+					<th>交流チーム数</th>
+					<th>メンバー募集</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% teams.each do |team| %>
+					<tr>
+						<td><%= link_to team.name, team_path(team) %></td>
+						<td><%= team.prefecture_name %><%= team.address %></td>
+						<td><%= team.number_of_people %>人</td>
+						<td><%= team.matchers.count %></td>
+						<td><%= team.members_wanted ? "〇" : "×" %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+<% end %>

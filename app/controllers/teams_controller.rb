@@ -10,13 +10,10 @@ class TeamsController < ApplicationController
     @pref = params[:prefecture_code]
     @prefecture = JpPrefecture::Prefecture.find(@pref)
     @prefecture_teams = Team.where(prefecture_code: @pref)
-  end
-
-  def search
-    @q = Team.search(search_params)
-    @teams = @q.result(distinct: true)
-    @prefecture = JpPrefecture::Prefecture.
-      find(params[:q][:prefecture_code_eq].to_i)
+    if params[:q]
+      @search_prefecture = JpPrefecture::Prefecture.
+                           find(params[:q][:prefecture_code_eq].to_i)
+    end
   end
 
   def show
@@ -57,9 +54,6 @@ class TeamsController < ApplicationController
   end
 
   def map
-  end
-
-  def team_search
   end
 
   def member
