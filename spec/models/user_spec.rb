@@ -33,4 +33,70 @@ RSpec.describe User, type: :model do
 		  	end
 		end
 	end
+
+	describe "アソシエーション" do
+		let(:association) do
+			described_class.reflect_on_association(target)
+		end
+
+		shared_examples 'has_many' do
+			it { expect(association.macro).to eq :has_many }
+		end
+
+		context 'team' do
+			let(:target) {:team}
+			it { expect(association.macro).to eq :belongs_to }
+			it { expect(association.class_name).to eq 'Team'}
+		end
+		context 'bookmarks' do
+			let(:target) {:bookmarks}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Bookmark'}
+		end
+		context 'bookmark_teams' do
+			let(:target) {:bookmark_teams}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Team'}
+		end
+		context 'entries' do
+			let(:target) {:entries}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Entry'}
+		end
+		context 'entry_events' do
+			let(:target) {:entry_events}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Event'}
+		end
+		context 'favorites' do
+			let(:target) {:favorites}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Favorite'}
+		end
+		context 'favorite_articles' do
+			let(:target) {:favorite_articles}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Article'}
+		end
+		context 'comments' do
+			let(:target) {:comments}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Comment'}
+		end
+		context 'approvals' do
+			let(:target) {:approvals}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Approval'}
+		end
+		context 'active_notifications' do
+			let(:target) {:active_notifications}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Notification'}
+		end
+		context 'passive_notifications' do
+			let(:target) {:passive_notifications}
+			it_behaves_like 'has_many'
+			it { expect(association.class_name).to eq 'Notification'}
+		end
+	end
 end

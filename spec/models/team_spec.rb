@@ -63,4 +63,50 @@ RSpec.describe Team, type: :model do
   		end
   	end
   end
+
+  describe "アソシエーション" do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
+
+    shared_examples 'has_many' do
+      it { expect(association.macro).to eq :has_many }
+    end
+
+    context 'users' do
+      let(:target) {:users}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'User'}
+    end
+    context 'bookmarks' do
+      let(:target) {:bookmarks}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'Bookmark'}
+    end
+    context 'articles' do
+      let(:target) {:articles}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'Article'}
+    end
+    context 'events' do
+      let(:target) {:events}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'Event'}
+    end
+    context 'approvals' do
+      let(:target) {:approvals}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'Approval'}
+    end
+    context 'active_team_notifications' do
+      let(:target) {:active_team_notifications}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'Notification'}
+    end
+    context 'passive_team_notifications' do
+      let(:target) {:passive_team_notifications}
+      it_behaves_like 'has_many'
+      it { expect(association.class_name).to eq 'Notification'}
+    end
+  end
 end

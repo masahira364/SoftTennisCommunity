@@ -1,5 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'アソシエーション' do
+  	let(:association) do
+  		described_class.reflect_on_association(target)
+  	end
+
+  	context 'team' do
+  		let(:target) { :team }
+  		it { expect(association.macro).to eq :belongs_to }
+  		it { expect(association.class_name).to eq 'Team'}
+  	end
+  	context 'entries' do
+  		let(:target) { :entries }
+  		it { expect(association.macro).to eq :has_many }
+  		it { expect(association.class_name).to eq 'Entry'}
+  	end
+  	context 'entry_users' do
+  		let(:target) { :entry_users }
+  		it { expect(association.macro).to eq :has_many }
+  		it { expect(association.class_name).to eq 'User'}
+  	end
+  	context 'notifications' do
+  		let(:target) { :notifications }
+  		it { expect(association.macro).to eq :has_many }
+  		it { expect(association.class_name).to eq 'Notification'}
+  	end
+  end
 end
